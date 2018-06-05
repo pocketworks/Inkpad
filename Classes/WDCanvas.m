@@ -11,8 +11,6 @@
 
 #import "UIView+Additions.h"
 #import "WDCanvas.h"
-#import "WDCanvasController.h"
-#import "WDDrawingController.h"
 #import "WDColor.h"
 #import "WDEraserPreviewView.h"
 #import "WDEtchedLine.h"
@@ -170,7 +168,7 @@ NSString *WDCanvasBeganTrackingTouches = @"WDCanvasBeganTrackingTouches";
 
 - (WDDrawingController *) drawingController
 {
-    return controller_.drawingController;
+    return [controller_ getDrawingController];
 }
 
 - (void) drawingDimensionsChanged:(NSNotification *)aNotification

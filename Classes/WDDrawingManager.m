@@ -247,6 +247,7 @@ NSString *WDDrawingNewFilenameKey = @"WDDrawingNewFilenameKey";
     
     WDDocument *document = [[WDDocument alloc] initWithFileURL:url];
     document.drawing = drawing;
+    document.fileTypeOverride = @"com.spartantool";
     [document saveToURL:url forSaveOperation:UIDocumentSaveForCreating completionHandler:^(BOOL success) {
         [[NSNotificationCenter defaultCenter] postNotificationName:WDDrawingAdded object:drawingName];
         if (shouldClose) {
@@ -298,7 +299,7 @@ NSString *WDDrawingNewFilenameKey = @"WDDrawingNewFilenameKey";
     static dispatch_once_t onceToken;
     
     dispatch_once(&onceToken, ^{
-        importQueue = dispatch_queue_create("com.taptrix.inkpad.import", DISPATCH_QUEUE_SERIAL);
+        importQueue = dispatch_queue_create("com.spartantool.import", DISPATCH_QUEUE_SERIAL);
     });
     
     return importQueue;
@@ -355,7 +356,7 @@ NSString *WDDrawingNewFilenameKey = @"WDDrawingNewFilenameKey";
     [doc openWithCompletionHandler:^(BOOL success) {
         dispatch_async([self importQueue], ^{
             if (success) {
-                doc.fileTypeOverride = @"com.taptrix.inkpad";
+                doc.fileTypeOverride = @"com.spartantool";
                 NSString *svgName = [[url lastPathComponent] stringByDeletingPathExtension];
                 NSString *drawingName = [self uniqueFilenameWithPrefix:svgName extension:WDDefaultDrawingExtension];
                 NSString *path = [[WDDrawingManager drawingPath] stringByAppendingPathComponent:drawingName]; 

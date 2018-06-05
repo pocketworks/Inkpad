@@ -205,7 +205,7 @@ NSString *WDInvalidPropertiesKey = @"WDInvalidPropertiesKey";
     static NSSet *strokeProperties = nil;
     
     if (!strokeProperties) {
-        strokeProperties = [NSSet setWithObjects:WDStrokeColorProperty, WDStrokeCapProperty, WDStrokeJoinProperty,
+        strokeProperties = [NSSet setWithObjects: WDStrokeColorProperty, WDStrokeCapProperty, WDStrokeJoinProperty,
                             WDStrokeWidthProperty, WDStrokeVisibleProperty, WDStrokeDashPatternProperty,
                             WDStartArrowProperty, WDEndArrowProperty, nil];
     }
@@ -279,9 +279,10 @@ NSString *WDInvalidPropertiesKey = @"WDInvalidPropertiesKey";
 
 - (WDStrokeStyle *) activeStrokeStyle
 {
-    if (![[self defaultValueForProperty:WDStrokeVisibleProperty] boolValue]) {
-        return nil;
-    }
+    //TODO - Uncomment once we have the stroke style added back
+//    if (![[self defaultValueForProperty:WDStrokeVisibleProperty] boolValue]) {
+//        return nil;
+//    }
     
     return [self defaultStrokeStyle];
 }

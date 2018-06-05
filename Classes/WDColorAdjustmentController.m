@@ -9,7 +9,7 @@
 //  Copyright (c) 2011-2013 Steve Sprang
 //
 
-#import "WDAppDelegate.h"
+#import "AppDelegate.h"
 #import "WDBlockingView.h"
 #import "WDCanvas.h"
 #import "WDDrawingController.h"
@@ -255,7 +255,7 @@
 - (void) runModalOverView:(UIView *)view
 {
     blockingView_ = [[WDBlockingView alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    WDAppDelegate *delegate = (WDAppDelegate *) [UIApplication sharedApplication].delegate;
+    AppDelegate *delegate = (AppDelegate *) [UIApplication sharedApplication].delegate;
     
     blockingView_.passthroughViews = @[self.view];
 

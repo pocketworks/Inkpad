@@ -10,6 +10,9 @@
 //
 
 #import <UIKit/UIKit.h>
+//#import "WYPopoverController.h"
+#import <WYPopoverController/WYPopoverController.h>
+#import "WDCanvasDelegate.h"
 
 @class WDCanvas;
 @class WDColorBalanceController;
@@ -36,12 +39,13 @@ enum {
     kEmailDrawing
 };
 
-@interface WDCanvasController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate,
-                                                    UIPopoverControllerDelegate, UIDocumentInteractionControllerDelegate>
+@interface WDCanvasController : UIViewController <WDCanvasDelegate,UINavigationControllerDelegate, UIImagePickerControllerDelegate,
+                                                    WYPopoverControllerDelegate, UIDocumentInteractionControllerDelegate>
 {
     WDDocument          *document_;
     WDCanvas            *canvas_;
     NSArray             *editingItems_;
+    WDDrawing *drawing;
     
     UIBarButtonItem     *albumItem_;
     UIBarButtonItem     *zoomToFitItem_;
@@ -64,7 +68,7 @@ enum {
     WDMenu              *actionMenu_;
     WDMenu              *visibleMenu_; // pointer to currently active menu
     
-    UIPopoverController *popoverController_;
+    WYPopoverController *popoverController_;
     
     WDSwatchController  *swatchController_;
     WDStrokeController  *strokeController_;
@@ -74,28 +78,14 @@ enum {
     
     WDHueSaturationController   *hueController_;
     WDColorBalanceController   *balanceController_;
+    WDDrawingController *drawingController_;
+    UIDocumentInteractionController *documentInteractionController;
 
     NSURL *exportFileUrl;
+    
 }
 
-@property (nonatomic, strong) WDDocument *document;
-@property (weak, nonatomic, readonly) WDDrawing *drawing;
-@property (nonatomic, readonly) WDCanvas *canvas;
-@property (nonatomic, readonly, strong) WDDrawingController *drawingController;
-@property (strong, nonatomic) UIDocumentInteractionController *documentInteractionController;
 
-- (void) updateTitle;
-- (void) hidePopovers;
-
-- (BOOL) shouldDismissPopoverForClassController:(Class)controllerClass insideNavController:(BOOL)insideNav;
-- (UIPopoverController *) runPopoverWithController:(UIViewController *)controller from:(id)sender;
-
-- (void) validateMenuItem:(WDMenuItem *)item;
-- (void) validateVisibleMenuItems;
-- (void) validateColorMenu;
-
-- (void) editTextObject:(WDText *)text selectAll:(BOOL)selectAll;
-- (void) undoStatusDidChange:(NSNotification *)aNotification;
 
 @end
 

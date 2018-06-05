@@ -10,12 +10,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "WYPopoverController.h"
 
 @class WDTool;
 @class WDToolView;
 
-@interface WDToolButton : UIButton <UIPopoverControllerDelegate> {
-    UIPopoverController             *subtoolsPopover_;
+@interface WDToolButton : UIButton <WYPopoverControllerDelegate> {
+    WYPopoverController             *subtoolsPopover_;
 }
 
 @property (nonatomic, weak) WDTool  *tool;

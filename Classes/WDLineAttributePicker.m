@@ -209,6 +209,7 @@ const float radius = 3.0f;
 
 - (void) awakeFromNib
 {
+        [super awakeFromNib];
     self.backgroundColor = nil;
     self.opaque = NO;
 }

@@ -11,7 +11,7 @@
 
 #import "WDBezierNode.h"
 #import "WDCanvas.h"
-#import "WDCanvasController.h"
+#import "WDCanvasDelegate.h"
 #import "WDCompoundPath.h"
 #import "WDDynamicGuide.h"
 #import "WDDynamicGuideController.h"
@@ -147,7 +147,6 @@
         } else if ([element isKindOfClass:[WDPath class]] && result.type == kWDEdge) {
             // only allow one node to be selected at a time
             [controller deselectAllNodes];
-            
             if (event.count == 2 && [element conformsToProtocol:@protocol(WDTextRenderer)]) {
                 [canvas.controller editTextObject:(WDText *)element selectAll:NO];
             }

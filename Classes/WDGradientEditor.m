@@ -29,6 +29,7 @@
 
 - (void) awakeFromNib
 {
+        [super awakeFromNib];
     indicators_ = [[NSMutableArray alloc] init];
     self.gradient = [WDGradient defaultGradient];
     

@@ -11,9 +11,9 @@
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
+#import "WDCanvasDelegate.h"
 
 @class WDCanvas;
-@class WDCanvasController;
 @class WDDrawing;
 @class WDDrawingController;
 @class WDEraserPreviewView;
@@ -82,7 +82,7 @@
 @property (nonatomic, strong) NSValue *marquee;
 @property (nonatomic, strong) WDPath *shapeUnderConstruction;
 @property (nonatomic, strong) WDPath *eraserPath;
-@property (nonatomic, weak) WDCanvasController *controller;
+@property (nonatomic, weak) id<WDCanvasDelegate> controller;
 @property (weak, nonatomic, readonly) WDDrawingController *drawingController;
 @property (nonatomic, strong, readonly) WDPalette *toolPalette;
 @property (nonatomic, readonly) WDEyedropper *eyedropper;

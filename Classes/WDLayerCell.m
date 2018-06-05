@@ -27,6 +27,7 @@
 
 - (void) awakeFromNib
 {
+        [super awakeFromNib];
     [visibleButton addTarget:self action:@selector(toggleVisibility:) forControlEvents:UIControlEventTouchUpInside];
     [lockButton addTarget:self action:@selector(toggleLocked:) forControlEvents:UIControlEventTouchUpInside];
     

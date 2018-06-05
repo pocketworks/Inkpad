@@ -9,9 +9,8 @@
 //  Copyright (c) 2011-2013 Steve Sprang
 //
 
-#import <DropboxSDK/DropboxSDK.h>
-#import "WDAppDelegate.h"
 #import "WDExportController.h"
+#import "AppDelegate.h"
 
 @implementation WDExportController
 
@@ -63,11 +62,7 @@ NSString *WDDropboxFormatDefault = @"WDDropboxFormatDefault";
     [self performSelector:@selector(sendAction:) withObject:nil afterDelay:0];
 }
 
-- (void) unlinkDropbox:(id)sender
-{
-    WDAppDelegate *appDelegate = (WDAppDelegate *) [UIApplication sharedApplication].delegate;
-    [appDelegate unlinkDropbox];
-}
+
 
 - (void) setMode:(NSUInteger) mode
 {
@@ -86,9 +81,7 @@ NSString *WDDropboxFormatDefault = @"WDDropboxFormatDefault";
         
         UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Upload", @"Upload") style:UIBarButtonItemStyleDone target:self action:@selector(doExport:)];
         self.navigationItem.rightBarButtonItem = rightItem;
-        
-        UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Unlink", @"Unlink") style:UIBarButtonItemStylePlain target:self action:@selector(unlinkDropbox:)];
-        self.navigationItem.leftBarButtonItem = leftItem;
+
     }
 }
 

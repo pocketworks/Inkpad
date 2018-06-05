@@ -67,27 +67,30 @@ static NSString *orientations_[] = { @"Portrait", @"Landscape" };
 
 - (CGSize) size
 {
-    NSUserDefaults  *defaults = [NSUserDefaults standardUserDefaults];
-    NSString        *pageSize = [defaults objectForKey:WDPageSize];
-    NSDictionary    *config = configuration_[[self indexOfPageSizeInConfiguration:pageSize]];
+//    NSUserDefaults  *defaults = [NSUserDefaults standardUserDefaults];
+//    NSString        *pageSize = [defaults objectForKey:WDPageSize];
+//    NSDictionary    *config = configuration_[[self indexOfPageSizeInConfiguration:pageSize]];
     CGSize          size;
-    
-    if (config[@"Custom"]) {
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        size.width = [defaults floatForKey:WDCustomSizeWidth];
-        size.height = [defaults floatForKey:WDCustomSizeHeight];
-    } else {
-        size.width = [config[@"Width"] floatValue];
-        size.height = [config[@"Height"] floatValue];
-    }
-    
-    BOOL landscape = [[defaults objectForKey:WDPageOrientation] isEqualToString:@"Landscape"];
-    if ((landscape && (size.height > size.width)) || (!landscape && (size.width > size.height))) {
-        // swap size and height
-        float temp = size.height;
-        size.height = size.width;
-        size.width = temp;
-    }
+//
+//    if (config[@"Custom"]) {
+//        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//        size.width = [defaults floatForKey:WDCustomSizeWidth];
+//        size.height = [defaults floatForKey:WDCustomSizeHeight];
+//    } else {
+//        size.width = [config[@"Width"] floatValue];
+//        size.height = [config[@"Height"] floatValue];
+//    }
+//
+//    BOOL landscape = [[defaults objectForKey:WDPageOrientation] isEqualToString:@"Landscape"];
+//    if ((landscape && (size.height > size.width)) || (!landscape && (size.width > size.height))) {
+//        // swap size and height
+//        float temp = size.height;
+//        size.height = size.width;
+//        size.width = temp;
+//    }
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    size.width = 792;
+    size.height = 612;
 
     return size;
 }
@@ -95,14 +98,15 @@ static NSString *orientations_[] = { @"Portrait", @"Landscape" };
 - (NSString *) units
 {
     NSUserDefaults  *defaults = [NSUserDefaults standardUserDefaults];
-    NSString        *pageSize = [defaults objectForKey:WDPageSize];
-    NSDictionary    *config = configuration_[[self indexOfPageSizeInConfiguration:pageSize]];
-    
-    if (config[@"Custom"]) {
-        return [defaults objectForKey:WDCustomSizeUnits];
-    } else {
-        return config[@"Units"];
-    }
+//    NSString        *pageSize = [defaults objectForKey:WDPageSize];
+//    NSDictionary    *config = configuration_[[self indexOfPageSizeInConfiguration:pageSize]];
+//
+//    if (config[@"Custom"]) {
+//        return [defaults objectForKey:WDCustomSizeUnits];
+//    } else {
+//        return config[@"Units"];
+//    }
+      return @"Inches";
 }
 
 - (void)loadView

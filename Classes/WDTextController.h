@@ -10,15 +10,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WDCanvasDelegate.h"
 
 @class WDText;
-@class WDCanvasController;
 
 @interface WDTextController : UIViewController <UITextViewDelegate> {
     IBOutlet UITextView             *text_;
 }
 @property (nonatomic, weak) WDText *editingObject;
-@property (nonatomic, weak) WDCanvasController *canvasController;
+@property (nonatomic, weak) id<WDCanvasDelegate> canvasController;
 
 - (void) configureWithTextObject:(WDText *)text;
 - (void) selectAll;

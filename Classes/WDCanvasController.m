@@ -43,8 +43,16 @@
 #import "WDToolManager.h"
 #import "WDUtilities.h"
 #import "UIBarButtonItem+Additions.h"
+#import "WDPageSizeController.h"
 
 #define kMaxDisplayableFilename     18
+
+@interface WDCanvasController()
+@property (nonatomic, strong) WDDocument *document;
+@property (nonatomic, readonly) WDCanvas *canvas;
+@property (nonatomic, readonly, strong) WDDrawingController *drawingController;
+@property (strong, nonatomic) UIDocumentInteractionController *documentInteractionController;
+@end
 
 @implementation WDCanvasController
 
@@ -55,6 +63,10 @@
 - (WDDrawing *) drawing 
 {
     return self.document.drawing;
+}
+
+-(WDDrawingController *) getDrawingController {
+    return self.drawingController;
 }
 
 - (void) editTextObject:(WDText *)text selectAll:(BOOL)selectAll
@@ -69,7 +81,7 @@
         [textController performSelector:@selector(selectAll) withObject:nil afterDelay:0];
     }
     
-    popoverController_ = [[UIPopoverController alloc] initWithContentViewController:textController];
+    popoverController_ = [[WYPopoverController alloc] initWithContentViewController:textController];
     popoverController_.passthroughViews = @[canvas_];
     
 	popoverController_.delegate = self;
@@ -77,7 +89,7 @@
     CGRect bounds = CGRectIntegral([canvas_ convertRectToView:[text bounds]]);
     
     UIPopoverArrowDirection permittedArrowDir = (UIPopoverArrowDirectionDown | UIPopoverArrowDirectionLeft | UIPopoverArrowDirectionRight);
-    [popoverController_ presentPopoverFromRect:bounds inView:self.view permittedArrowDirections:permittedArrowDir animated:YES];
+    [popoverController_ presentPopoverFromRect:bounds inView:self.view permittedArrowDirections:WYPopoverArrowDirectionAny animated:YES];
 }
 
 #pragma mark -
@@ -912,16 +924,16 @@
 #pragma mark -
 #pragma mark Popover Management
 
-- (UIPopoverController *) runPopoverWithController:(UIViewController *)controller from:(id)sender
+- (WYPopoverController *) runPopoverWithController:(UIViewController *)controller from:(id)sender
 {
     [self hidePopovers];
     
-    popoverController_ = [[UIPopoverController alloc] initWithContentViewController:controller];
+    popoverController_ = [[WYPopoverController alloc] initWithContentViewController:controller];
 	popoverController_.delegate = self;
     popoverController_.passthroughViews = @[self.navigationController.toolbar,
                                            self.navigationController.navigationBar,
                                            self.canvas];
-    [popoverController_ presentPopoverFromBarButtonItem:sender permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+    [popoverController_ presentPopoverFromBarButtonItem:sender permittedArrowDirections:WYPopoverArrowDirectionAny animated:YES];
     
     return popoverController_;
 }
@@ -937,7 +949,7 @@
     [[UIPrintInteractionController sharedPrintController] dismissAnimated:NO];
 }
 
-- (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
+- (void)popoverControllerDidDismissPopover:(WYPopoverController *)popoverController
 {
     if (popoverController == popoverController_) {
         popoverController_ = nil;
@@ -957,141 +969,141 @@
 
 #pragma mark -
 #pragma mark Toolbar Stuff
-
-- (NSArray *) editingItems
-{
-    if (editingItems_) {
-        return editingItems_;
-    } 
-
-    UIBarButtonItem *objectItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Edit", @"Edit")
-                                                 style:UIBarButtonItemStyleBordered
-                                                target:self
-                                                action:@selector(showObjectMenu:)];
-    
-    UIBarButtonItem *arrangeItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Arrange", @"Arrange")
-                                                                 style:UIBarButtonItemStyleBordered
-                                                                target:self
-                                                                action:@selector(showArrangeMenu:)];
-    
-    UIBarButtonItem *pathItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Path", @"Path")
-                                                                   style:UIBarButtonItemStyleBordered
-                                                                  target:self
-                                                                  action:@selector(showPathMenu:)];
-    
-    WDButton *imageButton = [WDButton buttonWithType:UIButtonTypeCustom];
-    imageButton.showsTouchWhenHighlighted = YES;
-    [imageButton setImage:[UIImage imageNamed:@"color_wheel.png"] forState:UIControlStateNormal];
-    [imageButton addTarget:self action:@selector(showColorMenu:) forControlEvents:UIControlEventTouchUpInside];
-    [imageButton sizeToFit];
-    CGRect frame = imageButton.frame;
-    frame.size.height = 44;
-    imageButton.frame = frame;
-    colorItem_ = [[UIBarButtonItem alloc] initWithCustomView:imageButton];
-    imageButton.barButtonItem = colorItem_;
-    
-    
-    UIBarButtonItem *fontItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"font.png"]
-                                                 style:UIBarButtonItemStylePlain
-                                                target:self
-                                                action:@selector(showFontPanel:)];
-    
-	undoItem_ = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"undo.png"]
-                                                 style:UIBarButtonItemStylePlain
-                                                target:self
-                                                action:@selector(undo:)];
-    
-    redoItem_ = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"redo.png"]
-                                                 style:UIBarButtonItemStylePlain
-                                                target:self
-                                                action:@selector(redo:)];
-    
-    imageButton = [WDButton buttonWithType:UIButtonTypeCustom];
-    imageButton.showsTouchWhenHighlighted = YES;
-    [imageButton setImage:[UIImage imageNamed:@"swatches.png"] forState:UIControlStateNormal];
-    [imageButton addTarget:self action:@selector(showSwatches:) forControlEvents:UIControlEventTouchUpInside];
-    [imageButton sizeToFit];
-    frame = imageButton.frame;
-    frame.size.height = 44;
-    imageButton.frame = frame;
-    UIBarButtonItem *swatchItem = [[UIBarButtonItem alloc] initWithCustomView:imageButton];
-    imageButton.barButtonItem = swatchItem;
-    
-    layerItem_ = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Layers", @"Layers")
-                                                  style:UIBarButtonItemStyleBordered
-                                                 target:self
-                                                 action:@selector(showLayers:)];
-    
-    UIBarButtonItem *flexibleItem = [UIBarButtonItem flexibleItem];
-    UIBarButtonItem *fixedItem = [UIBarButtonItem fixedItemWithWidth:16];
-    UIBarButtonItem *smallFixedItem = [UIBarButtonItem fixedItemWithWidth:8];
-    
-    shadowWell_ = [[WDShadowWell alloc] initWithFrame:CGRectMake(0, 0, 28, 44)];
-    UIBarButtonItem *shadowItem = [[UIBarButtonItem alloc] initWithCustomView:shadowWell_];
-    shadowWell_.barButtonItem = shadowItem;
-    [shadowWell_ addTarget:self action:@selector(showShadowPanel:) forControlEvents:UIControlEventTouchUpInside];
-    [shadowWell_ setShadow:[self.drawingController.propertyManager activeShadow]];
-    [shadowWell_ setOpacity:[[self.drawingController.propertyManager defaultValueForProperty:WDOpacityProperty] floatValue]];
-    
-    fillWell_ = [[WDColorWell alloc] initWithFrame:CGRectMake(0, 0, 28, 44)];
-    UIBarButtonItem *fillItem = [[UIBarButtonItem alloc] initWithCustomView:fillWell_];
-    fillWell_.barButtonItem = fillItem;
-    [fillWell_ addTarget:self action:@selector(showFillStylePanel:) forControlEvents:UIControlEventTouchUpInside];
-    [fillWell_ setPainter:[self.drawingController.propertyManager activeFillStyle]];
-    
-    strokeWell_ = [[WDColorWell alloc] initWithFrame:CGRectMake(0, 0, 28, 44)];
-    strokeWell_.strokeMode = YES;
-    UIBarButtonItem *strokeItem = [[UIBarButtonItem alloc] initWithCustomView:strokeWell_];
-    strokeWell_.barButtonItem = strokeItem;
-    [strokeWell_ addTarget:self action:@selector(showStrokeStylePanel:) forControlEvents:UIControlEventTouchUpInside];
-    [strokeWell_ setPainter:[self.drawingController.propertyManager activeStrokeStyle].color];
-    
-    
-	editingItems_ = @[objectItem, smallFixedItem,
-                     arrangeItem, smallFixedItem,
-                     pathItem, fixedItem,
-                     colorItem_, fixedItem,
-                     undoItem_, fixedItem,
-                     redoItem_, flexibleItem, 
-                     fontItem, fixedItem,
-                     shadowItem, fixedItem,
-                     strokeItem, fixedItem,
-                     fillItem, fixedItem,
-                     swatchItem, fixedItem,
-                     layerItem_];
-    
-    return editingItems_;
-}
-
-- (NSArray *) upperRightToolbarItems
-{
-    
-    actionItem_ = [[UIBarButtonItem alloc]
-                                   initWithBarButtonSystemItem:UIBarButtonSystemItemAction
-                                   target:self action:@selector(showActionMenu:)];
-    
-    gearItem_ = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"gear.png"]
-                                                 style:UIBarButtonItemStylePlain
-                                                target:self
-                                                action:@selector(showSettingsMenu:)];
-    
-    albumItem_ = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"album.png"]
-                                                  style:UIBarButtonItemStylePlain
-                                                 target:self
-                                                 action:@selector(showPhotoBrowser:)];
-    
-    zoomToFitItem_ = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"zoom_to_fit.png"]
-                                                      style:UIBarButtonItemStylePlain
-                                                     target:self
-                                                     action:@selector(scaleDocumentToFit:)];
-    
-	NSArray *items = @[actionItem_, gearItem_, albumItem_, zoomToFitItem_];
-    
-    // make sure the album item has the proper enabled state
-    albumItem_.enabled = self.drawing.activeLayer.editable;
-    
-    return items;    
-}
+//
+//- (NSArray *) editingItems
+//{
+//    if (editingItems_) {
+//        return editingItems_;
+//    }
+//
+//    UIBarButtonItem *objectItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Edit", @"Edit")
+//                                                 style:UIBarButtonItemStyleBordered
+//                                                target:self
+//                                                action:@selector(showObjectMenu:)];
+//
+//    UIBarButtonItem *arrangeItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Arrange", @"Arrange")
+//                                                                 style:UIBarButtonItemStyleBordered
+//                                                                target:self
+//                                                                action:@selector(showArrangeMenu:)];
+//
+//    UIBarButtonItem *pathItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Path", @"Path")
+//                                                                   style:UIBarButtonItemStyleBordered
+//                                                                  target:self
+//                                                                  action:@selector(showPathMenu:)];
+//
+//    WDButton *imageButton = [WDButton buttonWithType:UIButtonTypeCustom];
+//    imageButton.showsTouchWhenHighlighted = YES;
+//    [imageButton setImage:[UIImage imageNamed:@"color_wheel.png"] forState:UIControlStateNormal];
+//    [imageButton addTarget:self action:@selector(showColorMenu:) forControlEvents:UIControlEventTouchUpInside];
+//    [imageButton sizeToFit];
+//    CGRect frame = imageButton.frame;
+//    frame.size.height = 44;
+//    imageButton.frame = frame;
+//    colorItem_ = [[UIBarButtonItem alloc] initWithCustomView:imageButton];
+//    imageButton.barButtonItem = colorItem_;
+//
+//
+//    UIBarButtonItem *fontItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"font.png"]
+//                                                 style:UIBarButtonItemStylePlain
+//                                                target:self
+//                                                action:@selector(showFontPanel:)];
+//
+//    undoItem_ = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"undo.png"]
+//                                                 style:UIBarButtonItemStylePlain
+//                                                target:self
+//                                                action:@selector(undo:)];
+//
+//    redoItem_ = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"redo.png"]
+//                                                 style:UIBarButtonItemStylePlain
+//                                                target:self
+//                                                action:@selector(redo:)];
+//
+//    imageButton = [WDButton buttonWithType:UIButtonTypeCustom];
+//    imageButton.showsTouchWhenHighlighted = YES;
+//    [imageButton setImage:[UIImage imageNamed:@"swatches.png"] forState:UIControlStateNormal];
+//    [imageButton addTarget:self action:@selector(showSwatches:) forControlEvents:UIControlEventTouchUpInside];
+//    [imageButton sizeToFit];
+//    frame = imageButton.frame;
+//    frame.size.height = 44;
+//    imageButton.frame = frame;
+//    UIBarButtonItem *swatchItem = [[UIBarButtonItem alloc] initWithCustomView:imageButton];
+//    imageButton.barButtonItem = swatchItem;
+//
+//    layerItem_ = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"Layers", @"Layers")
+//                                                  style:UIBarButtonItemStyleBordered
+//                                                 target:self
+//                                                 action:@selector(showLayers:)];
+//
+//    UIBarButtonItem *flexibleItem = [UIBarButtonItem flexibleItem];
+//    UIBarButtonItem *fixedItem = [UIBarButtonItem fixedItemWithWidth:16];
+//    UIBarButtonItem *smallFixedItem = [UIBarButtonItem fixedItemWithWidth:8];
+//
+//    shadowWell_ = [[WDShadowWell alloc] initWithFrame:CGRectMake(0, 0, 28, 44)];
+//    UIBarButtonItem *shadowItem = [[UIBarButtonItem alloc] initWithCustomView:shadowWell_];
+//    shadowWell_.barButtonItem = shadowItem;
+//    [shadowWell_ addTarget:self action:@selector(showShadowPanel:) forControlEvents:UIControlEventTouchUpInside];
+//    [shadowWell_ setShadow:[self.drawingController.propertyManager activeShadow]];
+//    [shadowWell_ setOpacity:[[self.drawingController.propertyManager defaultValueForProperty:WDOpacityProperty] floatValue]];
+//
+//    fillWell_ = [[WDColorWell alloc] initWithFrame:CGRectMake(0, 0, 28, 44)];
+//    UIBarButtonItem *fillItem = [[UIBarButtonItem alloc] initWithCustomView:fillWell_];
+//    fillWell_.barButtonItem = fillItem;
+//    [fillWell_ addTarget:self action:@selector(showFillStylePanel:) forControlEvents:UIControlEventTouchUpInside];
+//    [fillWell_ setPainter:[self.drawingController.propertyManager activeFillStyle]];
+//
+//    strokeWell_ = [[WDColorWell alloc] initWithFrame:CGRectMake(0, 0, 28, 44)];
+//    strokeWell_.strokeMode = YES;
+//    UIBarButtonItem *strokeItem = [[UIBarButtonItem alloc] initWithCustomView:strokeWell_];
+//    strokeWell_.barButtonItem = strokeItem;
+//    [strokeWell_ addTarget:self action:@selector(showStrokeStylePanel:) forControlEvents:UIControlEventTouchUpInside];
+//    [strokeWell_ setPainter:[self.drawingController.propertyManager activeStrokeStyle].color];
+//
+//
+//    editingItems_ = @[objectItem, smallFixedItem,
+//                     arrangeItem, smallFixedItem,
+//                     pathItem, fixedItem,
+//                     colorItem_, fixedItem,
+//                     undoItem_, fixedItem,
+//                     redoItem_, flexibleItem,
+//                     fontItem, fixedItem,
+//                     shadowItem, fixedItem,
+//                     strokeItem, fixedItem,
+//                     fillItem, fixedItem,
+//                     swatchItem, fixedItem,
+//                     layerItem_];
+//
+//    return editingItems_;
+//}
+//
+//- (NSArray *) upperRightToolbarItems
+//{
+//
+//    actionItem_ = [[UIBarButtonItem alloc]
+//                                   initWithBarButtonSystemItem:UIBarButtonSystemItemAction
+//                                   target:self action:@selector(showActionMenu:)];
+//
+//    gearItem_ = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"gear.png"]
+//                                                 style:UIBarButtonItemStylePlain
+//                                                target:self
+//                                                action:@selector(showSettingsMenu:)];
+//
+//    albumItem_ = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"album.png"]
+//                                                  style:UIBarButtonItemStylePlain
+//                                                 target:self
+//                                                 action:@selector(showPhotoBrowser:)];
+//
+//    zoomToFitItem_ = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"zoom_to_fit.png"]
+//                                                      style:UIBarButtonItemStylePlain
+//                                                     target:self
+//                                                     action:@selector(scaleDocumentToFit:)];
+//
+//    NSArray *items = @[actionItem_, gearItem_, albumItem_, zoomToFitItem_];
+//
+//    // make sure the album item has the proper enabled state
+//    albumItem_.enabled = self.drawing.activeLayer.editable;
+//
+//    return items;
+//}
 
 - (void) enableDocumentItems
 {
@@ -1180,9 +1192,18 @@
     canvas_ = [[WDCanvas alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     canvas_.controller = self;
     self.view = canvas_;
-    
+//    [self.drawingController setValue:@(4.0)
+//                         forProperty:WDStrokeWidthProperty];
     // we don't want to go under the nav bar and tool bar
     self.edgesForExtendedLayout = UIRectEdgeNone;
+    
+    WDPageSizeController*  pageSizeController = [[WDPageSizeController alloc] initWithNibName:nil bundle:nil];
+//    [pageSizeController setSize: CGSizeMake(612, 792)];
+//     [pageSizeController setUnits:@"Inches"];
+    WDDocument *document = [[WDDrawingManager sharedInstance] createNewDrawingWithSize:pageSizeController.size
+                                                                              andUnits:pageSizeController.units];
+
+    [self setDocument:document];
 }
 
 - (void) didEnterBackground:(NSNotification *)aNotification
@@ -1218,15 +1239,16 @@
     [WDToolManager sharedInstance].activeTool = ([WDToolManager sharedInstance].tools)[0];
 }
 
+
 - (void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:animated];
     if (canvas_.drawing) {
         return;
     }
+
     
-    [super viewWillAppear:animated];
-    
-    [self setToolbarItems:[self editingItems] animated:YES];
+//    [self setToolbarItems:[self editingItems] animated:YES];
     
     // make sure the undo/redo buttons have the correct enabled state
     undoItem_.enabled = NO;
@@ -1235,15 +1257,19 @@
     // set a good background color for the window so that orientation changes don't look hideous
     [UIApplication sharedApplication].keyWindow.backgroundColor = [UIColor colorWithWhite:0.92 alpha:1];
     
-    self.navigationItem.rightBarButtonItems = [self upperRightToolbarItems];
+//    self.navigationItem.rightBarButtonItems = [self upperRightToolbarItems];
 
-    if (self.drawing) {
-        canvas_.drawing = self.drawing;
-        [canvas_ scaleDocumentToFit];
-        [canvas_ showRulers:self.drawing.rulersVisible];
-    } else {
-        [canvas_ startActivity];
-    }
+//    if (self.drawing) {
+//        canvas_.drawing = self.drawing;
+//        [canvas_ scaleDocumentToFit];
+//        [canvas_ showRulers:self.drawing.rulersVisible];
+//    } else {
+//        [canvas_ startActivity];
+//    }
+//
+    canvas_.drawing = self.drawing;
+    [canvas_ scaleDocumentToFit];
+    [canvas_ showRulers:self.drawing.rulersVisible];
     
     [self enableDocumentItems];
 }

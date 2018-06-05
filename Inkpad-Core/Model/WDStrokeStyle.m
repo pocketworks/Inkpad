@@ -79,7 +79,7 @@ NSString * WDSVGStringForCGLineCap(CGLineCap cap)
         return nil;
     }
     
-    width_ = 1;
+    width_ = 4;
     cap_ = kCGLineCapRound;
     join_ = kCGLineJoinRound;
     color_ = [WDColor blackColor];

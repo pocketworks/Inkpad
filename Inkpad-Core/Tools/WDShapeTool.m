@@ -33,8 +33,9 @@ NSString *WDShapeToolSpiralDecay = @"WDShapeToolSpiralDecay";
 
 - (NSString *) iconName
 {
-    NSArray *imageNames = @[@"rect.png", @"oval.png", @"star.png", @"polygon.png", @"line.png", @"spiral.png"];
-    
+//    NSArray *imageNames = @[@"rect.png", @"oval.png", @"star.png", @"polygon.png", @"line.png", @"spiral.png"];
+    NSArray *imageNames = @[@"line.png", @"rect.png"];
+
     return imageNames[shapeMode_];
 }
 
@@ -73,10 +74,11 @@ NSString *WDShapeToolSpiralDecay = @"WDShapeToolSpiralDecay";
 {
     CGPoint initialPoint = self.initialEvent.snappedLocation;
     
-    if (shapeMode_ == WDShapeOval) {
-        CGRect rect = WDRectWithPointsConstrained(initialPoint, pt, constrain);
-        return [WDPath pathWithOvalInRect:rect];
-    } else if (shapeMode_ == WDShapeRectangle) {
+//    if (shapeMode_ == WDShapeOval) {
+//        CGRect rect = WDRectWithPointsConstrained(initialPoint, pt, constrain);
+//        return [WDPath pathWithOvalInRect:rect];
+//    }
+     if (shapeMode_ == WDShapeRectangle) {
         CGRect rect = WDRectWithPointsConstrained(initialPoint, pt, constrain);
         
         return [WDPath pathWithRoundedRect:rect cornerRadius:rectCornerRadius_];
@@ -87,116 +89,117 @@ NSString *WDShapeToolSpiralDecay = @"WDShapeToolSpiralDecay";
         }
         
         return [WDPath pathWithStart:initialPoint end:pt];
-    } else if (shapeMode_== WDShapePolygon) {
-        NSMutableArray  *nodes = [NSMutableArray array];
-        CGPoint         delta = WDSubtractPoints(pt, initialPoint);
-        float           angle, x, y, theta = M_PI * 2 / numPolygonPoints_;
-        float           radius = WDDistance(initialPoint, pt);
-        float           offsetAngle = atan2(delta.y, delta.x);
-        
-        for(int i = 0; i < numPolygonPoints_; i++) {
-            angle = theta * i + offsetAngle;
-            
-            x = cos(angle) * radius;
-            y = sin(angle) * radius;
-            
-            [nodes addObject:[WDBezierNode bezierNodeWithAnchorPoint:CGPointMake(x + initialPoint.x, y + initialPoint.y)]];
-        }
-        
-        WDPath *path = [[WDPath alloc] init];
-        path.nodes = nodes;
-        path.closed = YES;
-        return path;
-    } else if (shapeMode_ == WDShapeStar) {
-        float   outerRadius = WDDistance(pt, initialPoint);
-        
-        if (outerRadius == 0) {
-            return nil;
-        }
-        
-        if (constrain) {
-            float tempInner = starInnerRadiusRatio_ * lastStarRadius_;
-            starInnerRadiusRatio_ = WDClamp(0.05, 2.0, tempInner / outerRadius);
-        }
-        lastStarRadius_ = outerRadius;
-        
-        float   ratioToUse = starInnerRadiusRatio_;
-        float   kappa = (M_PI * 2) / numStarPoints_;
-        float   optimalRatio = cos(kappa) / cos(kappa / 2);
-        
-        if ((numStarPoints_ > 4) && (starInnerRadiusRatio_ / optimalRatio > 0.95) && (starInnerRadiusRatio_ / optimalRatio < 1.05)) {
-            ratioToUse = optimalRatio;
-        }
-        
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-        [defaults setFloat:ratioToUse forKey:WDShapeToolStarInnerRadiusRatio];
-        
-        NSMutableArray  *nodes = [NSMutableArray array];
-        CGPoint         delta = WDSubtractPoints(pt, initialPoint);
-        float           innerRadius = outerRadius * ratioToUse;
-        float           angle, x, y;
-        float           theta = M_PI / numStarPoints_; // == (360 degrees / numPoints) / 2.0
-        float           offsetAngle = atan2(delta.y, delta.x);
-        
-        for(int i = 0; i < numStarPoints_ * 2; i += 2) {
-            angle = theta * i + offsetAngle;
-            x = cos(angle) * outerRadius;
-            y = sin(angle) * outerRadius;
-            
-            [nodes addObject:[WDBezierNode bezierNodeWithAnchorPoint:CGPointMake(x + initialPoint.x, y + initialPoint.y)]];
-            
-            angle = theta * (i+1) + offsetAngle;
-            x = cos(angle) * innerRadius;
-            y = sin(angle) * innerRadius;
-            
-            [nodes addObject:[WDBezierNode bezierNodeWithAnchorPoint:CGPointMake(x + initialPoint.x, y + initialPoint.y)]];
-        }
-        
-        WDPath *path = [[WDPath alloc] init];
-        path.nodes = nodes;
-        path.closed = YES;
-        return path;
-    } else if (shapeMode_ == WDShapeSpiral) {
-        float       radius = WDDistance(pt, initialPoint);
-        CGPoint     delta = WDSubtractPoints(pt, initialPoint);
-        float       offsetAngle = atan2(delta.y, delta.x) + M_PI;
-        int         segments = 20;
-        float       b = 1.0f - (decay_ / 100.f);
-        float       a = radius / pow(M_E, b * segments * M_PI_4);
-        
-        NSMutableArray  *nodes = [NSMutableArray array];
-        
-        for (int segment = 0; segment <= segments; segment++) {
-            float t = segment * M_PI_4;
-            float f = a * pow(M_E, b * t);
-            float x = f * cos(t);
-            float y = f * sin(t);
-            
-            CGPoint P3 = CGPointMake(x, y);
-            
-            // derivative
-            float t0 = t - M_PI_4;
-            float deltaT = (t - t0) / 3;
-            
-            float xPrime = a*b*pow(M_E,b*t)*cos(t) - a*pow(M_E,b*t)*sin(t);
-            float yPrime = a*pow(M_E,b*t)*cos(t) + a*b*pow(M_E,b*t)*sin(t);
-            
-            CGPoint P2 = WDSubtractPoints(P3, WDMultiplyPointScalar(CGPointMake(xPrime, yPrime), deltaT));
-            CGPoint P1 = WDAddPoints(P3, WDMultiplyPointScalar(CGPointMake(xPrime, yPrime), deltaT));
-            
-            [nodes addObject:[WDBezierNode bezierNodeWithInPoint:P2 anchorPoint:P3 outPoint:P1]];
-        }
-        
-        WDPath *path = [[WDPath alloc] init];
-        path.nodes = nodes;
-        
-        CGAffineTransform transform = CGAffineTransformMakeTranslation(initialPoint.x, initialPoint.y);
-        transform = CGAffineTransformRotate(transform, offsetAngle);
-        
-        [path transform:transform];
-        return path;
     }
-    
+//    else if (shapeMode_== WDShapePolygon) {
+//        NSMutableArray  *nodes = [NSMutableArray array];
+//        CGPoint         delta = WDSubtractPoints(pt, initialPoint);
+//        float           angle, x, y, theta = M_PI * 2 / numPolygonPoints_;
+//        float           radius = WDDistance(initialPoint, pt);
+//        float           offsetAngle = atan2(delta.y, delta.x);
+//        
+//        for(int i = 0; i < numPolygonPoints_; i++) {
+//            angle = theta * i + offsetAngle;
+//            
+//            x = cos(angle) * radius;
+//            y = sin(angle) * radius;
+//            
+//            [nodes addObject:[WDBezierNode bezierNodeWithAnchorPoint:CGPointMake(x + initialPoint.x, y + initialPoint.y)]];
+//        }
+//        
+//        WDPath *path = [[WDPath alloc] init];
+//        path.nodes = nodes;
+//        path.closed = YES;
+//        return path;
+//    } else if (shapeMode_ == WDShapeStar) {
+//        float   outerRadius = WDDistance(pt, initialPoint);
+//        
+//        if (outerRadius == 0) {
+//            return nil;
+//        }
+//        
+//        if (constrain) {
+//            float tempInner = starInnerRadiusRatio_ * lastStarRadius_;
+//            starInnerRadiusRatio_ = WDClamp(0.05, 2.0, tempInner / outerRadius);
+//        }
+//        lastStarRadius_ = outerRadius;
+//        
+//        float   ratioToUse = starInnerRadiusRatio_;
+//        float   kappa = (M_PI * 2) / numStarPoints_;
+//        float   optimalRatio = cos(kappa) / cos(kappa / 2);
+//        
+//        if ((numStarPoints_ > 4) && (starInnerRadiusRatio_ / optimalRatio > 0.95) && (starInnerRadiusRatio_ / optimalRatio < 1.05)) {
+//            ratioToUse = optimalRatio;
+//        }
+//        
+//        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//        [defaults setFloat:ratioToUse forKey:WDShapeToolStarInnerRadiusRatio];
+//        
+//        NSMutableArray  *nodes = [NSMutableArray array];
+//        CGPoint         delta = WDSubtractPoints(pt, initialPoint);
+//        float           innerRadius = outerRadius * ratioToUse;
+//        float           angle, x, y;
+//        float           theta = M_PI / numStarPoints_; // == (360 degrees / numPoints) / 2.0
+//        float           offsetAngle = atan2(delta.y, delta.x);
+//        
+//        for(int i = 0; i < numStarPoints_ * 2; i += 2) {
+//            angle = theta * i + offsetAngle;
+//            x = cos(angle) * outerRadius;
+//            y = sin(angle) * outerRadius;
+//            
+//            [nodes addObject:[WDBezierNode bezierNodeWithAnchorPoint:CGPointMake(x + initialPoint.x, y + initialPoint.y)]];
+//            
+//            angle = theta * (i+1) + offsetAngle;
+//            x = cos(angle) * innerRadius;
+//            y = sin(angle) * innerRadius;
+//            
+//            [nodes addObject:[WDBezierNode bezierNodeWithAnchorPoint:CGPointMake(x + initialPoint.x, y + initialPoint.y)]];
+//        }
+//        
+//        WDPath *path = [[WDPath alloc] init];
+//        path.nodes = nodes;
+//        path.closed = YES;
+//        return path;
+//    } else if (shapeMode_ == WDShapeSpiral) {
+//        float       radius = WDDistance(pt, initialPoint);
+//        CGPoint     delta = WDSubtractPoints(pt, initialPoint);
+//        float       offsetAngle = atan2(delta.y, delta.x) + M_PI;
+//        int         segments = 20;
+//        float       b = 1.0f - (decay_ / 100.f);
+//        float       a = radius / pow(M_E, b * segments * M_PI_4);
+//        
+//        NSMutableArray  *nodes = [NSMutableArray array];
+//        
+//        for (int segment = 0; segment <= segments; segment++) {
+//            float t = segment * M_PI_4;
+//            float f = a * pow(M_E, b * t);
+//            float x = f * cos(t);
+//            float y = f * sin(t);
+//            
+//            CGPoint P3 = CGPointMake(x, y);
+//            
+//            // derivative
+//            float t0 = t - M_PI_4;
+//            float deltaT = (t - t0) / 3;
+//            
+//            float xPrime = a*b*pow(M_E,b*t)*cos(t) - a*pow(M_E,b*t)*sin(t);
+//            float yPrime = a*pow(M_E,b*t)*cos(t) + a*b*pow(M_E,b*t)*sin(t);
+//            
+//            CGPoint P2 = WDSubtractPoints(P3, WDMultiplyPointScalar(CGPointMake(xPrime, yPrime), deltaT));
+//            CGPoint P1 = WDAddPoints(P3, WDMultiplyPointScalar(CGPointMake(xPrime, yPrime), deltaT));
+//            
+//            [nodes addObject:[WDBezierNode bezierNodeWithInPoint:P2 anchorPoint:P3 outPoint:P1]];
+//        }
+//        
+//        WDPath *path = [[WDPath alloc] init];
+//        path.nodes = nodes;
+//        
+//        CGAffineTransform transform = CGAffineTransformMakeTranslation(initialPoint.x, initialPoint.y);
+//        transform = CGAffineTransformRotate(transform, offsetAngle);
+//        
+//        [path transform:transform];
+//        return path;
+//    }
+//    
     return nil;
 }
 

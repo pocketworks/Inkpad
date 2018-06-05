@@ -19,8 +19,8 @@
 
 @property (nonatomic, weak) id target;
 @property (nonatomic, assign) SEL action;
-@property (nonatomic, readonly) CGSize size;
-@property (weak, nonatomic, readonly) NSString *units;
+@property (nonatomic, assign, readonly) CGSize size;
+@property (nonatomic, assign, readonly) NSString *units;
 
 @end
 

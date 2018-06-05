@@ -15,6 +15,7 @@
 #import "WDToolButton.h"
 #import "WDToolManager.h"
 #import "WDToolView.h"
+#import "WYPopoverController.h"
 
 @implementation WDToolButton
 
@@ -160,11 +161,16 @@
     }
 }
 
-- (void) popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
+- (void) popoverControllerDidDismissPopover:(WYPopoverController *)popoverController
 {
     if (popoverController == subtoolsPopover_) {
         subtoolsPopover_ = nil;
     }
+}
+
+- (BOOL)popoverControllerShouldDismissPopover:(WYPopoverController *)controller
+{
+    return YES;
 }
 
 - (void) didChooseTool:(WDToolView *)toolView
@@ -184,13 +190,13 @@
         vc.preferredContentSize = subtools.frame.size;
         vc.view = subtools;
         
-        subtoolsPopover_ = [[UIPopoverController alloc] initWithContentViewController:vc];
+        subtoolsPopover_ = [[WYPopoverController alloc] initWithContentViewController:vc];
         subtoolsPopover_.delegate = self;
         
         WDToolView *parent = (WDToolView *)self.superview;
         subtoolsPopover_.passthroughViews = @[self.superview, parent.canvas];
         
-        [subtoolsPopover_ presentPopoverFromRect:self.bounds inView:self permittedArrowDirections:UIPopoverArrowDirectionAny animated:NO];
+        [subtoolsPopover_ presentPopoverFromRect:self.bounds inView:self permittedArrowDirections:WYPopoverArrowDirectionAny animated:NO];
     }
 }
 

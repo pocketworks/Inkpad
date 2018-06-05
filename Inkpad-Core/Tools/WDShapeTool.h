@@ -12,11 +12,11 @@
 #import "WDTool.h"
 
 enum {
-    WDShapeRectangle = 0,
+    WDShapeLine = 0,
+    WDShapeRectangle,
     WDShapeOval,
     WDShapeStar,
     WDShapePolygon,
-    WDShapeLine,
     WDShapeSpiral
 };
 
