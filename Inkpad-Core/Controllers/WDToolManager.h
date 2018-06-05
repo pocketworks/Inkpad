@@ -16,7 +16,7 @@
 @interface WDToolManager : NSObject
 
 @property (nonatomic, weak) WDTool *activeTool;
-@property (nonatomic, strong, readonly) NSArray *tools;
+@property (nonatomic, strong) NSArray *tools;
 
 + (WDToolManager *) sharedInstance;
 

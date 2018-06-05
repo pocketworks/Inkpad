@@ -10,6 +10,11 @@ Pod::Spec.new do |s|
   s.source_files  = "Classes", "Classes/**/*.{h,m}","Inkpad-Core","Inkpad-Core/**/*.{h,m,mm,cpp}"
   # s.private_header_files = "Inkpad-Core","Inkpad-Core/**/*.{h,m,mm,cpp}"
   s.resources = "PLists/*","Help/*","Icons/*","Images/*","Base.lproj/*"
+  # s.resource_bundles = {
+  # 	'plist_bundle' => ["PLists/*"],
+  # 	'images' => ["Help/*","Icons/*","Images/*"],
+  # 	'XIB' => ["Base.lproj/*"]
+  # }
   s.exclude_files = "Classes/Exclude"
   s.dependency "WYPopoverController"
   s.ios.deployment_target = '6.0'
