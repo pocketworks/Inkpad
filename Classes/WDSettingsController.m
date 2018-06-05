@@ -29,7 +29,7 @@
     
     self.navigationItem.title = NSLocalizedString(@"Settings", @"Settings");
     
-    NSString *settingsPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"Settings.plist"];
+    NSString *settingsPath = [[[NSBundle bundleForClass:self.class] resourcePath] stringByAppendingPathComponent:@"Settings.plist"];
     configuration_ = [NSArray arrayWithContentsOfFile:settingsPath];
     
     return self;

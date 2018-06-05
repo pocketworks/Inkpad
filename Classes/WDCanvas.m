@@ -875,7 +875,7 @@ NSString *WDCanvasBeganTrackingTouches = @"WDCanvasBeganTrackingTouches";
     deleteButton_.frame = CGRectMake(0, bottom + 3, [WDToolButton dimension], [WDToolButton dimension]);
     [deleteButton_ setImage:icon forState:UIControlStateNormal];
     deleteButton_.tintColor = [UIColor colorWithRed:(166.0f / 255.0f) green:(51.0f / 255.0f) blue:(51.0 / 255.0f) alpha:1.0f];
-    [deleteButton_ addTarget:self.controller action:@selector(delete:) forControlEvents:UIControlEventTouchUpInside];
+    [deleteButton_ addTarget:[self.controller getDrawingController] action:@selector(delete:) forControlEvents:UIControlEventTouchUpInside];
     deleteButton_.enabled = NO;
     [paletteView addSubview:deleteButton_];
     
