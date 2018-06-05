@@ -88,7 +88,7 @@ static NSString *orientations_[] = { @"Portrait", @"Landscape" };
 //        size.height = size.width;
 //        size.width = temp;
 //    }
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     size.width = 792;
     size.height = 612;
 
@@ -97,7 +97,7 @@ static NSString *orientations_[] = { @"Portrait", @"Landscape" };
 
 - (NSString *) units
 {
-    NSUserDefaults  *defaults = [NSUserDefaults standardUserDefaults];
+//    NSUserDefaults  *defaults = [NSUserDefaults standardUserDefaults];
 //    NSString        *pageSize = [defaults objectForKey:WDPageSize];
 //    NSDictionary    *config = configuration_[[self indexOfPageSizeInConfiguration:pageSize]];
 //

@@ -9,7 +9,7 @@
 //  Copyright (c) 2011-2013 Steve Sprang
 //
 
-#import "AppDelegate.h"
+//#import "AppDelegate.h"
 #import "WDBlockingView.h"
 #import "WDCanvas.h"
 #import "WDDrawingController.h"
@@ -254,38 +254,38 @@
 
 - (void) runModalOverView:(UIView *)view
 {
-    blockingView_ = [[WDBlockingView alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    AppDelegate *delegate = (AppDelegate *) [UIApplication sharedApplication].delegate;
-    
-    blockingView_.passthroughViews = @[self.view];
-
-    blockingView_.target = self;
-    blockingView_.action = @selector(blockingViewTapped:);
-    
-    [delegate.window addSubview:blockingView_];
-    
-    // adjust frame origin
-    NSString *originString = [[NSUserDefaults standardUserDefaults] objectForKey:self.defaultsName];
-    CGPoint origin = WDCenterOfRect(view.bounds);
-    origin = WDSubtractPoints(origin, CGPointMake(self.view.frame.size.width / 2, self.view.frame.size.height / 2));
-    origin = WDFloorPoint(origin);
-    
-    if (originString) {
-        origin = CGPointFromString(originString);
-    }
-    
-    CGRect frame = self.view.frame;
-    frame.origin = origin;
-    self.view.sharpCenter = WDCenterOfRect(frame);
-    
-    [self beginColorAdjustmentSession];
-    
-    [super viewWillAppear:NO];
-    [view addSubview:self.view];
-    [super viewDidAppear:NO];
-    
-    // make sure it's on screen (the device might have rotated since we last saved the frame)
-    [self bringOnScreenAnimated:NO];
+//    blockingView_ = [[WDBlockingView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+//    AppDelegate *delegate = (AppDelegate *) [UIApplication sharedApplication].delegate;
+//    
+//    blockingView_.passthroughViews = @[self.view];
+//
+//    blockingView_.target = self;
+//    blockingView_.action = @selector(blockingViewTapped:);
+//    
+//    [delegate.window addSubview:blockingView_];
+//    
+//    // adjust frame origin
+//    NSString *originString = [[NSUserDefaults standardUserDefaults] objectForKey:self.defaultsName];
+//    CGPoint origin = WDCenterOfRect(view.bounds);
+//    origin = WDSubtractPoints(origin, CGPointMake(self.view.frame.size.width / 2, self.view.frame.size.height / 2));
+//    origin = WDFloorPoint(origin);
+//    
+//    if (originString) {
+//        origin = CGPointFromString(originString);
+//    }
+//    
+//    CGRect frame = self.view.frame;
+//    frame.origin = origin;
+//    self.view.sharpCenter = WDCenterOfRect(frame);
+//    
+//    [self beginColorAdjustmentSession];
+//    
+//    [super viewWillAppear:NO];
+//    [view addSubview:self.view];
+//    [super viewDidAppear:NO];
+//    
+//    // make sure it's on screen (the device might have rotated since we last saved the frame)
+//    [self bringOnScreenAnimated:NO];
 }
 
 @end

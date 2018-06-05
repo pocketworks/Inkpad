@@ -1,0 +1,16 @@
+PODS:
+  - WYPopoverController (0.3.9)
+
+DEPENDENCIES:
+  - WYPopoverController
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - WYPopoverController
+
+SPEC CHECKSUMS:
+  WYPopoverController: a9db25ac2841a686acdc0f3a99bdb21545db32f4
+
+PODFILE CHECKSUM: f889c275534d519294f40798f7a8113cd6666a12
+
+COCOAPODS: 1.5.2

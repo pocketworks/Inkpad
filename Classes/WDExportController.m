@@ -10,7 +10,6 @@
 //
 
 #import "WDExportController.h"
-#import "AppDelegate.h"
 
 @implementation WDExportController
 

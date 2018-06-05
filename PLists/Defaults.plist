@@ -67,7 +67,7 @@
 	<key>WDStrokeVisibleProperty</key>
 	<true/>
 	<key>WDStrokeWidthProperty</key>
-	<integer>1</integer>
+	<integer>4</integer>
 	<key>WDStartArrowProperty</key>
 	<string></string>
 	<key>WDEndArrowProperty</key>

@@ -452,7 +452,7 @@ NSString *WDCanvasBeganTrackingTouches = @"WDCanvasBeganTrackingTouches";
 - (void) drawIsolationInContext:(CGContextRef)ctx rect:(CGRect)rect
 {
     if (!isolationColor_) {
-        isolationColor_ = [UIColor colorWithPatternImage:[UIImage imageNamed:@"isolate.png"]];
+        isolationColor_ = [UIColor colorWithPatternImage:[UIImage imageNamed:@"isolate.png" inBundle:[NSBundle bundleForClass:self.class] compatibleWithTraitCollection:nil]];
         isolationColor_ = [isolationColor_ colorWithAlphaComponent:0.9];
     }
     
@@ -871,7 +871,7 @@ NSString *WDCanvasBeganTrackingTouches = @"WDCanvasBeganTrackingTouches";
     
     // add a "delete" buttton
     deleteButton_ = [UIButton buttonWithType:UIButtonTypeCustom];
-    UIImage *icon = [[UIImage imageNamed:@"trash.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+    UIImage *icon = [[UIImage imageNamed:@"trash.png" inBundle:[NSBundle bundleForClass:self.class] compatibleWithTraitCollection:nil] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
     deleteButton_.frame = CGRectMake(0, bottom + 3, [WDToolButton dimension], [WDToolButton dimension]);
     [deleteButton_ setImage:icon forState:UIControlStateNormal];
     deleteButton_.tintColor = [UIColor colorWithRed:(166.0f / 255.0f) green:(51.0f / 255.0f) blue:(51.0 / 255.0f) alpha:1.0f];
@@ -947,7 +947,7 @@ NSString *WDCanvasBeganTrackingTouches = @"WDCanvasBeganTrackingTouches";
     pivot_ = pivot;
     
     if (!pivotView_) {
-        pivotView_ = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pivot.png"]];
+        pivotView_ = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"pivot.png" inBundle:[NSBundle bundleForClass:self.class] compatibleWithTraitCollection:nil]];
         [self insertSubview:pivotView_ atIndex:0];
     }
     
@@ -1030,7 +1030,7 @@ NSString *WDCanvasBeganTrackingTouches = @"WDCanvasBeganTrackingTouches";
 - (void) startActivity
 {
     if (!activityView_) {
-        [[NSBundle mainBundle] loadNibNamed:@"Activity" owner:self options:nil];
+        [[NSBundle bundleForClass:self.class] loadNibNamed:@"Activity" owner:self options:nil];
     }
     
     activityView_.sharpCenter = WDCenterOfRect(self.bounds);

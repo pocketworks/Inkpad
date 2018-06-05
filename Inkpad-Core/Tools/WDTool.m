@@ -44,11 +44,7 @@
 
 - (id) icon
 {
-#if TARGET_OS_IPHONE
-    return [UIImage imageNamed:self.iconName];
-#else
-    return [NSImage imageNamed:self.iconName];
-#endif
+    return [UIImage imageNamed:self.iconName inBundle:[NSBundle bundleForClass:self.class] compatibleWithTraitCollection:nil];
 }
 
 - (BOOL) createsObject

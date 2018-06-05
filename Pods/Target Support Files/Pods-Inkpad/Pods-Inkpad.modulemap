@@ -1,0 +1,6 @@
+framework module Pods_Inkpad {
+  umbrella header "Pods-Inkpad-umbrella.h"
+
+  export *
+  module * { export * }
+}

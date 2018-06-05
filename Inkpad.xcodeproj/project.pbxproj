@@ -13,12 +13,11 @@
 		02B54D3118D59DFF00DE8A9F /* OpenClipArt.strings in Resources */ = {isa = PBXBuildFile; fileRef = 02B54D2818D59DFF00DE8A9F /* OpenClipArt.strings */; };
 		02B54D3218D59DFF00DE8A9F /* Shadow.strings in Resources */ = {isa = PBXBuildFile; fileRef = 02B54D2A18D59DFF00DE8A9F /* Shadow.strings */; };
 		02B54D3318D59DFF00DE8A9F /* Stroke.strings in Resources */ = {isa = PBXBuildFile; fileRef = 02B54D2C18D59DFF00DE8A9F /* Stroke.strings */; };
-		1D3623260D0F684500981E51 /* WDAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* WDAppDelegate.m */; };
 		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		29E28F8415115F68007D36DE /* WDEmail.m in Sources */ = {isa = PBXBuildFile; fileRef = 29E28F8315115F68007D36DE /* WDEmail.m */; };
 		29E41AC213F9B229000C3305 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 29E41AC113F9B229000C3305 /* libz.dylib */; };
+		4E7903581CBB454F18973128 /* Pods_Inkpad.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73C016124342795E18BD7011 /* Pods_Inkpad.framework */; };
 		5D27FE8F13EC992D00EEEFF7 /* WDSamplesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D27FE8D13EC992D00EEEFF7 /* WDSamplesController.m */; };
-		5D348D891386FDA200BB0047 /* WDImportController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D348D881386FDA200BB0047 /* WDImportController.m */; };
 		5D3C1A76138771900040D261 /* dropbox_icon_directory.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D3C1A74138771900040D261 /* dropbox_icon_directory.png */; };
 		5D3C1A77138771900040D261 /* dropbox_icon_generic.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D3C1A75138771900040D261 /* dropbox_icon_generic.png */; };
 		5D62B27613CE866500E4D41B /* WDBlendModeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D62B27413CE866500E4D41B /* WDBlendModeController.m */; };
@@ -120,7 +119,6 @@
 		6B6A1C95125DC01000253800 /* Default-Portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B6A1C94125DC01000253800 /* Default-Portrait.png */; };
 		6B6A1C9B125DC10800253800 /* Default-Landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B6A1C9A125DC10800253800 /* Default-Landscape.png */; };
 		6B6A9A7A1349BA4000B00667 /* WDUnitsController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B6A9A791349BA4000B00667 /* WDUnitsController.m */; };
-		6B6C584415FB23BA00B8D6F3 /* DropboxSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B6C584315FB23BA00B8D6F3 /* DropboxSDK.framework */; };
 		6B6DC1A212403DA000A98FCE /* WDBlockingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B6DC1A112403DA000A98FCE /* WDBlockingView.m */; };
 		6B74182B140617F100A00C76 /* WDProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B74182A140617F100A00C76 /* WDProgressView.m */; };
 		6B74B7DC150E8213000A08D4 /* color_wheel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B74B7DB150E8213000A08D4 /* color_wheel@2x.png */; };
@@ -128,7 +126,6 @@
 		6B74B7E6150E829E000A08D4 /* radial@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B74B7E1150E829E000A08D4 /* radial@2x.png */; };
 		6B74B7E9150E82F0000A08D4 /* checkmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B74B7E7150E82F0000A08D4 /* checkmark@2x.png */; };
 		6B7A881A180CF73000FA241B /* WDArrowhead.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B7A8819180CF73000FA241B /* WDArrowhead.m */; };
-		6B7D2C3515085403001311B0 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B7D2C3415085403001311B0 /* Twitter.framework */; };
 		6B7D2CF0150898BE001311B0 /* font@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B7D2CEF150898BE001311B0 /* font@2x.png */; };
 		6B7D2CF415089966001311B0 /* redo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B7D2CF215089965001311B0 /* redo@2x.png */; };
 		6B7D2CF515089966001311B0 /* undo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B7D2CF315089965001311B0 /* undo@2x.png */; };
@@ -306,7 +303,6 @@
 		6BCD52BB123FFFED002FCB27 /* textLeft.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BCD529D123FFFED002FCB27 /* textLeft.png */; };
 		6BCD52BC123FFFED002FCB27 /* textRight.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BCD529E123FFFED002FCB27 /* textRight.png */; };
 		6BCD52BD123FFFED002FCB27 /* undo.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BCD529F123FFFED002FCB27 /* undo.png */; };
-		6BCD533212400017002FCB27 /* WDBrowserController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCD52D912400017002FCB27 /* WDBrowserController.m */; };
 		6BCD533312400017002FCB27 /* WDCanvas.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCD52DB12400017002FCB27 /* WDCanvas.m */; };
 		6BCD533412400017002FCB27 /* WDCanvasController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCD52DD12400017002FCB27 /* WDCanvasController.m */; };
 		6BCD533612400017002FCB27 /* WDColorIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BCD52E112400017002FCB27 /* WDColorIndicator.m */; };
@@ -362,8 +358,8 @@
 		02B54D2918D59DFF00DE8A9F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = OpenClipArt.strings; sourceTree = "<group>"; };
 		02B54D2B18D59DFF00DE8A9F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = Shadow.strings; sourceTree = "<group>"; };
 		02B54D2D18D59DFF00DE8A9F /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = Stroke.strings; sourceTree = "<group>"; };
-		1D3623240D0F684500981E51 /* WDAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDAppDelegate.h; sourceTree = "<group>"; };
-		1D3623250D0F684500981E51 /* WDAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDAppDelegate.m; sourceTree = "<group>"; };
+		070088A127307BE683B34E80 /* Pods-Inkpad.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Inkpad.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Inkpad/Pods-Inkpad.debug.xcconfig"; sourceTree = "<group>"; };
+		0C2A482FED1357CC8435E4C5 /* Pods-Inkpad.ad hoc.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Inkpad.ad hoc.xcconfig"; path = "Pods/Target Support Files/Pods-Inkpad/Pods-Inkpad.ad hoc.xcconfig"; sourceTree = "<group>"; };
 		1D6058910D05DD3D006BFB54 /* Inkpad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Inkpad.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		29735E8C14215801006CF698 /* WDDocumentProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WDDocumentProtocol.h; path = "Inkpad-Core/Model/WDDocumentProtocol.h"; sourceTree = SOURCE_ROOT; };
 		2983A283142C1B080097A3A8 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -373,12 +369,11 @@
 		29E41AC113F9B229000C3305 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		5D27FE8C13EC992D00EEEFF7 /* WDSamplesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDSamplesController.h; sourceTree = "<group>"; };
 		5D27FE8D13EC992D00EEEFF7 /* WDSamplesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDSamplesController.m; sourceTree = "<group>"; };
-		5D348D871386FDA200BB0047 /* WDImportController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDImportController.h; sourceTree = "<group>"; };
-		5D348D881386FDA200BB0047 /* WDImportController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDImportController.m; sourceTree = "<group>"; };
 		5D3C1A74138771900040D261 /* dropbox_icon_directory.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = dropbox_icon_directory.png; path = Images/dropbox_icon_directory.png; sourceTree = "<group>"; };
 		5D3C1A75138771900040D261 /* dropbox_icon_generic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = dropbox_icon_generic.png; path = Images/dropbox_icon_generic.png; sourceTree = "<group>"; };
 		5D62B27313CE866500E4D41B /* WDBlendModeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDBlendModeController.h; sourceTree = "<group>"; };
 		5D62B27413CE866500E4D41B /* WDBlendModeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDBlendModeController.m; sourceTree = "<group>"; };
+		628A5B9A20C657F500EEC652 /* WDCanvasDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDCanvasDelegate.h; sourceTree = "<group>"; };
 		6B00DA511405F65E00E45409 /* WDActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDActivity.h; sourceTree = "<group>"; };
 		6B00DA521405F65E00E45409 /* WDActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDActivity.m; sourceTree = "<group>"; };
 		6B00DA581406022B00E45409 /* WDActivityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDActivityManager.h; sourceTree = "<group>"; };
@@ -508,7 +503,6 @@
 		6B6A1C9A125DC10800253800 /* Default-Landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape.png"; path = "Images/Default-Landscape.png"; sourceTree = "<group>"; };
 		6B6A9A781349BA4000B00667 /* WDUnitsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDUnitsController.h; sourceTree = "<group>"; };
 		6B6A9A791349BA4000B00667 /* WDUnitsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDUnitsController.m; sourceTree = "<group>"; };
-		6B6C584315FB23BA00B8D6F3 /* DropboxSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = DropboxSDK.framework; sourceTree = "<group>"; };
 		6B6DC1A012403DA000A98FCE /* WDBlockingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDBlockingView.h; sourceTree = "<group>"; };
 		6B6DC1A112403DA000A98FCE /* WDBlockingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDBlockingView.m; sourceTree = "<group>"; };
 		6B741829140617F100A00C76 /* WDProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDProgressView.h; sourceTree = "<group>"; };
@@ -519,7 +513,6 @@
 		6B74B7E7150E82F0000A08D4 /* checkmark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "checkmark@2x.png"; path = "Images/checkmark@2x.png"; sourceTree = "<group>"; };
 		6B7A8818180CF73000FA241B /* WDArrowhead.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDArrowhead.h; sourceTree = "<group>"; };
 		6B7A8819180CF73000FA241B /* WDArrowhead.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDArrowhead.m; sourceTree = "<group>"; };
-		6B7D2C3415085403001311B0 /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
 		6B7D2CEF150898BE001311B0 /* font@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "font@2x.png"; path = "Images/font@2x.png"; sourceTree = "<group>"; };
 		6B7D2CF215089965001311B0 /* redo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "redo@2x.png"; path = "Images/redo@2x.png"; sourceTree = "<group>"; };
 		6B7D2CF315089965001311B0 /* undo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "undo@2x.png"; path = "Images/undo@2x.png"; sourceTree = "<group>"; };
@@ -805,8 +798,6 @@
 		6BCD529D123FFFED002FCB27 /* textLeft.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = textLeft.png; path = Images/textLeft.png; sourceTree = "<group>"; };
 		6BCD529E123FFFED002FCB27 /* textRight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = textRight.png; path = Images/textRight.png; sourceTree = "<group>"; };
 		6BCD529F123FFFED002FCB27 /* undo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = undo.png; path = Images/undo.png; sourceTree = "<group>"; };
-		6BCD52D812400017002FCB27 /* WDBrowserController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDBrowserController.h; sourceTree = "<group>"; };
-		6BCD52D912400017002FCB27 /* WDBrowserController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDBrowserController.m; sourceTree = "<group>"; };
 		6BCD52DA12400017002FCB27 /* WDCanvas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDCanvas.h; sourceTree = "<group>"; };
 		6BCD52DB12400017002FCB27 /* WDCanvas.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDCanvas.m; sourceTree = "<group>"; };
 		6BCD52DC12400017002FCB27 /* WDCanvasController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDCanvasController.h; sourceTree = "<group>"; };
@@ -875,7 +866,9 @@
 		6BFA802A1249CEDB00D1749C /* WDLayerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WDLayerCell.h; sourceTree = "<group>"; };
 		6BFA802B1249CEDB00D1749C /* WDLayerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WDLayerCell.m; sourceTree = "<group>"; };
 		6BFBC4EA1335F4A000D5877F /* zoom_to_fit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = zoom_to_fit.png; path = Images/zoom_to_fit.png; sourceTree = "<group>"; };
+		73C016124342795E18BD7011 /* Pods_Inkpad.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Inkpad.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D1107310486CEB800E47090 /* Inkpad-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Inkpad-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		95A169E43534629E9443764F /* Pods-Inkpad.distribution.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Inkpad.distribution.xcconfig"; path = "Pods/Target Support Files/Pods-Inkpad/Pods-Inkpad.distribution.xcconfig"; sourceTree = "<group>"; };
 		AE661E2118D684040096EAF3 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/ColorBalance.strings"; sourceTree = "<group>"; };
 		AE661E2218D684240096EAF3 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/HueSaturation.strings"; sourceTree = "<group>"; };
 		AE661E2318D6843D0096EAF3 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/OpenClipArt.strings"; sourceTree = "<group>"; };
@@ -887,6 +880,7 @@
 		C7A41BC2198003D800304C51 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Shadow.strings; sourceTree = "<group>"; };
 		C7A41BC3198003D800304C51 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Stroke.strings; sourceTree = "<group>"; };
 		C7A41BC4198003D800304C51 /* ar */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ar; path = ar.lproj/Localizable.strings; sourceTree = "<group>"; };
+		E25EECCF8FA42E420700AF0A /* Pods-Inkpad.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Inkpad.release.xcconfig"; path = "Pods/Target Support Files/Pods-Inkpad/Pods-Inkpad.release.xcconfig"; sourceTree = "<group>"; };
 		F43A1D6F183557770032933E /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = Localizable.strings; sourceTree = "<group>"; };
 		F4F41F7118B2C7E300065865 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = OpenClipArt.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -906,9 +900,8 @@
 				6BD7072612AD011F004E07C9 /* Security.framework in Frameworks */,
 				6BD7072712AD011F004E07C9 /* UIKit.framework in Frameworks */,
 				6BDDFA6C13E7924600B10774 /* MobileCoreServices.framework in Frameworks */,
-				6B7D2C3515085403001311B0 /* Twitter.framework in Frameworks */,
-				6B6C584415FB23BA00B8D6F3 /* DropboxSDK.framework in Frameworks */,
 				6BC73EF016025A1B0045647B /* Social.framework in Frameworks */,
+				4E7903581CBB454F18973128 /* Pods_Inkpad.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -931,8 +924,6 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				1D3623240D0F684500981E51 /* WDAppDelegate.h */,
-				1D3623250D0F684500981E51 /* WDAppDelegate.m */,
 				6BCD535F1240001D002FCB27 /* Additions */,
 				6BCD53651240002D002FCB27 /* Controllers */,
 				6BCD536212400025002FCB27 /* Model */,
@@ -959,6 +950,7 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
+				F32F80ACFF3C208FE6BBF27D /* Pods */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -998,11 +990,9 @@
 			isa = PBXGroup;
 			children = (
 				29E41AC113F9B229000C3305 /* libz.dylib */,
-				6B7D2C3415085403001311B0 /* Twitter.framework */,
 				2983A283142C1B080097A3A8 /* CoreData.framework */,
 				6BD7071812AD011F004E07C9 /* CoreGraphics.framework */,
 				6BD7071912AD011F004E07C9 /* CoreText.framework */,
-				6B6C584315FB23BA00B8D6F3 /* DropboxSDK.framework */,
 				6BD7071A12AD011F004E07C9 /* Foundation.framework */,
 				6BD7071B12AD011F004E07C9 /* MessageUI.framework */,
 				6BDDFA6B13E7924600B10774 /* MobileCoreServices.framework */,
@@ -1011,6 +1001,7 @@
 				6BD7071E12AD011F004E07C9 /* Security.framework */,
 				6BC73EEF16025A1B0045647B /* Social.framework */,
 				6BD7071F12AD011F004E07C9 /* UIKit.framework */,
+				73C016124342795E18BD7011 /* Pods_Inkpad.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1596,14 +1587,13 @@
 		6BCD53651240002D002FCB27 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				628A5B9A20C657F500EEC652 /* WDCanvasDelegate.h */,
 				6B00DA5B140604CE00E45409 /* WDActivityController.h */,
 				6B00DA5C140604CE00E45409 /* WDActivityController.m */,
 				6BA4578F180F2B9200B51D7A /* WDArrowController.h */,
 				6BA45790180F2B9200B51D7A /* WDArrowController.m */,
 				5D62B27313CE866500E4D41B /* WDBlendModeController.h */,
 				5D62B27413CE866500E4D41B /* WDBlendModeController.m */,
-				6BCD52D812400017002FCB27 /* WDBrowserController.h */,
-				6BCD52D912400017002FCB27 /* WDBrowserController.m */,
 				6BCD52DC12400017002FCB27 /* WDCanvasController.h */,
 				6BCD52DD12400017002FCB27 /* WDCanvasController.m */,
 				6B308FB513B56A8A000665C3 /* WDColorAdjustmentController.h */,
@@ -1626,8 +1616,6 @@
 				6B87C949131258660027A482 /* WDHelpController.m */,
 				6B53FF9513A7D9C90029574B /* WDHueSaturationController.h */,
 				6B53FF9613A7D9CA0029574B /* WDHueSaturationController.m */,
-				5D348D871386FDA200BB0047 /* WDImportController.h */,
-				5D348D881386FDA200BB0047 /* WDImportController.m */,
 				6BD34C7A124826D00040C383 /* WDLayerController.h */,
 				6BD34C7B124826D00040C383 /* WDLayerController.m */,
 				6B27E7EB12564B8F0066E24F /* WDPageSizeController.h */,
@@ -1775,6 +1763,17 @@
 			path = ja.lproj;
 			sourceTree = "<group>";
 		};
+		F32F80ACFF3C208FE6BBF27D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				070088A127307BE683B34E80 /* Pods-Inkpad.debug.xcconfig */,
+				E25EECCF8FA42E420700AF0A /* Pods-Inkpad.release.xcconfig */,
+				95A169E43534629E9443764F /* Pods-Inkpad.distribution.xcconfig */,
+				0C2A482FED1357CC8435E4C5 /* Pods-Inkpad.ad hoc.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		F43A1D69183557770032933E /* fr.lproj */ = {
 			isa = PBXGroup;
 			children = (
@@ -1791,10 +1790,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "Inkpad" */;
 			buildPhases = (
+				A1DF0B94DC1CE14C9B7EE20A /* [CP] Check Pods Manifest.lock */,
 				6B8F091D17FD040100BB6F7E /* ShellScript */,
 				1D60588D0D05DD3D006BFB54 /* Resources */,
 				1D60588E0D05DD3D006BFB54 /* Sources */,
 				1D60588F0D05DD3D006BFB54 /* Frameworks */,
+				AE881B45EDA9B3DECFB86A19 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1843,6 +1844,7 @@
 				ar,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
+			productRefGroup = 19C28FACFE9D520D11CA2CBB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -2059,6 +2061,42 @@
 			shellPath = /bin/sh;
 			shellScript = "find . -name '*.[m,mm]' | xargs genstrings -o en.lproj";
 		};
+		A1DF0B94DC1CE14C9B7EE20A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Inkpad-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AE881B45EDA9B3DECFB86A19 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Inkpad/Pods-Inkpad-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/WYPopoverController/WYPopoverController.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WYPopoverController.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Inkpad/Pods-Inkpad-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -2067,8 +2105,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
-				1D3623260D0F684500981E51 /* WDAppDelegate.m in Sources */,
-				6BCD533212400017002FCB27 /* WDBrowserController.m in Sources */,
 				6BCD533312400017002FCB27 /* WDCanvas.m in Sources */,
 				6BCD533412400017002FCB27 /* WDCanvasController.m in Sources */,
 				6BCD533612400017002FCB27 /* WDColorIndicator.m in Sources */,
@@ -2118,7 +2154,6 @@
 				6BB7F94513AB1F5A004081B3 /* WDHueShifter.m in Sources */,
 				6B308FB713B56A8A000665C3 /* WDColorAdjustmentController.m in Sources */,
 				6B308FBA13B56B59000665C3 /* WDColorBalanceController.m in Sources */,
-				5D348D891386FDA200BB0047 /* WDImportController.m in Sources */,
 				6B23AA5F13BBECD800C9B5F0 /* WDModalTitleBar.m in Sources */,
 				5D62B27613CE866500E4D41B /* WDBlendModeController.m in Sources */,
 				6B0D8CD613E01C4400DDFDC7 /* WDFontManager.m in Sources */,
@@ -2691,6 +2726,7 @@
 /* Begin XCBuildConfiguration section */
 		1D6058940D05DD3E006BFB54 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 070088A127307BE683B34E80 /* Pods-Inkpad.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -2709,17 +2745,18 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = YES;
 				INFOPLIST_FILE = "Inkpad-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_NAME = Inkpad;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
 		1D6058950D05DD3E006BFB54 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E25EECCF8FA42E420700AF0A /* Pods-Inkpad.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -2737,11 +2774,11 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = YES;
 				INFOPLIST_FILE = "Inkpad-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_NAME = Inkpad;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -2770,6 +2807,7 @@
 		};
 		6B87CE4B1313D6ED0027A482 /* Distribution */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 95A169E43534629E9443764F /* Pods-Inkpad.distribution.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -2787,12 +2825,12 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = YES;
 				INFOPLIST_FILE = "Inkpad-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_NAME = Inkpad;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "41E59B0A-7A30-4DDD-B126-053C5E83F922";
 				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Distribution;
@@ -2822,6 +2860,7 @@
 		};
 		6BF7476E1311C351000D9344 /* Ad Hoc */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0C2A482FED1357CC8435E4C5 /* Pods-Inkpad.ad hoc.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -2839,11 +2878,11 @@
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = YES;
 				INFOPLIST_FILE = "Inkpad-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_NAME = Inkpad;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = "Ad Hoc";
