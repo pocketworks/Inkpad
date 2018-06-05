@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "Inkpad"
-  s.version      = "0.0.1"
+  s.version      = "0.0.2"
   s.summary      = "Vector illustration library for iOS"
   s.homepage     = "https://github.com/pocketworks/Inkpad"
   # s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
