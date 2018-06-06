@@ -6,7 +6,8 @@
 //
 
 #import "WDTool.h"
+#import "WDCanvasDelegate.h"
 
 @interface WDImageTool : WDTool
-
+@property (nonatomic, strong) id<WDCanvasDelegate> delegate;
 @end

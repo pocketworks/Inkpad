@@ -155,7 +155,7 @@
     [self setImage:tinted forState:UIControlStateNormal];
     self.tintColor = [self toolTintColor];
     [self setImage:tool.icon forState:UIControlStateSelected];
-    
+    tool.parent = self;
     if (!tools_) {
         [self setBackgroundImage:[self selectedBackgroundWithDisclosure:NO] forState:UIControlStateSelected];
     }

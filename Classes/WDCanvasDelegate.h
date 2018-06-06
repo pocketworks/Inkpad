@@ -20,4 +20,5 @@
 - (void) hidePopovers;
 - (void) editTextObject:(WDText *)text selectAll:(BOOL)selectAll;
 - (WDDrawingController*) getDrawingController;
+- (void) runPopoverWithController:(UIViewController *)controller from:(id)sender;
 @end

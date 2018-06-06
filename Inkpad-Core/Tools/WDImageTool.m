@@ -13,4 +13,15 @@
     return @"album.png";
 }
 
+-(void) activated {
+    if (self.delegate != nil) {
+        UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+        
+        picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary ;
+        picker.modalPresentationStyle  = UIModalPresentationPopover;
+        picker.delegate = self.delegate;
+        [self.delegate runPopoverWithController:picker from:self.parent];
+    }
+
+}
 @end
