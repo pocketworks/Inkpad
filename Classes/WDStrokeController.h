@@ -52,7 +52,6 @@ typedef enum {
 - (IBAction) increment:(id)sender;
 - (IBAction) decrement:(id)sender;
 - (IBAction) takeStrokeWidthFrom:(id)sender;
-- (IBAction) takeFinalStrokeWidthFrom:(id)sender;
 - (IBAction) showArrowheads:(id)sender;
 
 @end

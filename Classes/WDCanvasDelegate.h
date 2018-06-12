@@ -10,7 +10,6 @@
 #import "WDDrawingController.h"
 #import "WDDocument.h"
 #import "WDMenuItem.h"
-#import <WYPopoverController/WYPopoverController.h>
 
 @protocol WDCanvasDelegate <NSObject>
 
@@ -21,4 +20,6 @@
 - (void) editTextObject:(WDText *)text selectAll:(BOOL)selectAll;
 - (WDDrawingController*) getDrawingController;
 - (void) runPopoverWithController:(UIViewController *)controller from:(id)sender;
+- (UIViewController*) buildSettingsViewForStroke;
+- (UIViewController*) buildSettingsViewForFill;
 @end

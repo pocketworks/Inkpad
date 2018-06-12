@@ -80,6 +80,5 @@ typedef enum {
 
 // raw drawing coordinate -> snapped drawing coordinate
 - (CGPoint) snappedPointForPoint:(CGPoint)pt inCanvas:(WDCanvas *)canvas;
-
-
+- (void) enable:(BOOL)isEnabled;
 @end

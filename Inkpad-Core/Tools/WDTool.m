@@ -14,6 +14,7 @@
 #import "WDPickResult.h"
 #import "WDTool.h"
 #import "UIView+Additions.h"
+#import "WDToolButton.h"
 
 #define kOptionsViewCornerRadius    9
 
@@ -303,5 +304,12 @@
 {
 
 }
+
+-(void) enable:(BOOL)isEnabled {
+    WDToolButton *button = (WDToolButton *)self.parent;
+    button.enabled = isEnabled;
+    button.userInteractionEnabled = isEnabled;
+}
+
 
 @end
