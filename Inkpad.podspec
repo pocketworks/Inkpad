@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   # 	'XIB' => ["Base.lproj/*"]
   # }
   s.exclude_files = "Classes/Exclude"
-  s.dependency "WYPopoverController"
+  s.dependency "FPPopover"
   s.ios.deployment_target = '6.0'
   s.module_name = "Inkpad"
 end

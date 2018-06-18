@@ -10,7 +10,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <WYPopoverController/WYPopoverController.h>
+#import "FPPopoverController.h"
 
 @interface WDMenu : UIControl {
     NSMutableArray          *rects_;
@@ -22,7 +22,7 @@
 @property (nonatomic, strong) NSMutableArray *items;
 @property (nonatomic, assign) BOOL visible;
 @property (nonatomic, assign) CGPoint origin;
-@property (nonatomic, weak) WYPopoverController *popover;
+@property (nonatomic, weak) FPPopoverController *popover;
 @property (nonatomic, weak) id delegate;
 
 - (id) initWithItems:(NSArray *)items;
