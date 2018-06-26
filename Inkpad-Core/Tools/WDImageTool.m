@@ -8,22 +8,20 @@
 #import "WDImageTool.h"
 
 @implementation WDImageTool
-UIImagePickerController *picker;
+UIViewController *imageController;
 -(NSString *) iconName {
     return @"album.png";
 }
 
 -(void) activated {
     if (self.delegate != nil) {
-        if (picker == nil) {
-            picker = [[UIImagePickerController alloc] init];
-            picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary ;
-            picker.modalPresentationStyle  = UIModalPresentationPopover;
-            picker.delegate = self.delegate;
+        if (!imageController) {
+            imageController = [self.delegate buildImageView];
         }
-      
-        [self.delegate runPopoverWithController:picker from:self.parent];
+        imageController.modalPresentationStyle = UIModalPresentationPopover;
+        [self.delegate runPopoverWithController:imageController from:self.parent];
     }
+    
 
 }
 @end
