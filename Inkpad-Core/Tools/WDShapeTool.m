@@ -36,7 +36,7 @@ NSString *WDShapeToolSpiralDecay = @"WDShapeToolSpiralDecay";
 //    NSArray *imageNames = @[@"rect.png", @"oval.png", @"star.png", @"polygon.png", @"line.png", @"spiral.png"];
     NSArray *imageNames = @[@"line.png", @"rect.png"];
 
-    return imageNames[shapeMode_];
+    return self.customIconName ? : imageNames[shapeMode_];
 }
 
 - (id) init

@@ -9,9 +9,14 @@
 #import "WDStrokeController.h"
 
 @implementation WDSettingsTool
-  UIViewController  *strokeController;
+UIViewController  *strokeController;
+
 -(NSString *) iconName {
-    return @"gear";
+    return self.customIconName ? : @"gear";
+}
+
+- (void)setIcon:(NSString *)name {
+    self.customIconName = name;
 }
 
 -(void) activated {
@@ -20,7 +25,7 @@
             strokeController = [self.delegate buildSettingsViewForStroke];
         }
         strokeController.modalPresentationStyle = UIModalPresentationPopover;
-         [self.delegate runPopoverWithController:strokeController from:self.parent];
+        [self.delegate runPopoverWithController:strokeController from:self.parent];
     }
     
 }

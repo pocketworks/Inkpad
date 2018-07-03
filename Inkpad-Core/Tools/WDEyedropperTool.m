@@ -27,8 +27,9 @@
 
 - (NSString *) iconName
 {
-    return @"eyedropper.png";
+    return self.customIconName ? : @"eyedropper.png";
 }
+
 
 - (void) beginWithEvent:(WDEvent *)theEvent inCanvas:(WDCanvas *)canvas
 {

@@ -19,8 +19,10 @@
 
 - (NSString *) iconName
 {
-    return @"add_anchor.png";
+    return self.customIconName ? : @"add_anchor.png";
 }
+
+
 
 - (void) beginWithEvent:(WDEvent *)event inCanvas:(WDCanvas *)canvas
 {

@@ -18,7 +18,7 @@
 
 - (NSString *) iconName
 {
-    return @"scale.png";
+    return self.customIconName ? : @"scale.png";
 }
 
 - (CGAffineTransform) computeTransform:(CGPoint)pt pivot:(CGPoint)pivot constrain:(WDToolFlags)flags

@@ -311,5 +311,8 @@
     button.userInteractionEnabled = isEnabled;
 }
 
+- (void)setIcon:(NSString *)name {
+    self.customIconName = name;
+}
 
 @end

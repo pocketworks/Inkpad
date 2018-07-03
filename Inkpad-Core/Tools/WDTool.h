@@ -46,6 +46,7 @@ typedef enum {
 @property (nonatomic, readonly) WDToolFlags flags;
 @property (nonatomic, readonly) BOOL shouldSnapPointsToGuides;
 @property (nonatomic, strong) UIView *parent;
+@property (weak, nonatomic) NSString *customIconName;
 
 + (WDTool *) tool;
 - (void) activated;
@@ -81,4 +82,5 @@ typedef enum {
 // raw drawing coordinate -> snapped drawing coordinate
 - (CGPoint) snappedPointForPoint:(CGPoint)pt inCanvas:(WDCanvas *)canvas;
 - (void) enable:(BOOL)isEnabled;
+- (void) setIcon:(NSString*)name;
 @end

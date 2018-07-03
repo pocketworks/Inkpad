@@ -41,8 +41,11 @@
 
 - (NSString *) iconName
 {
-    return (self.groupSelect ? @"groupSelect.png" : @"select.png");
+    NSString *name =  (self.groupSelect ? @"groupSelect.png" : @"select.png");
+    return self.customIconName ? : name;
 }
+
+
 
 - (BOOL) shouldSnapPointsToGuides
 {

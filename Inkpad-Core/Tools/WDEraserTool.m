@@ -26,8 +26,9 @@ NSString *WDEraserToolSize = @"WDEraserToolSize";
 
 - (NSString *) iconName
 {
-    return @"eraser.png";
+    return  self.customIconName ? : @"eraser.png";
 }
+
 
 - (id) init
 {

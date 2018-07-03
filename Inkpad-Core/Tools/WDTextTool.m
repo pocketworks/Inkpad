@@ -22,7 +22,7 @@
 
 - (NSString *) iconName
 {
-    return @"text.png";
+    return self.customIconName ? : @"text.png";
 }
 
 - (BOOL) createsObject

@@ -21,7 +21,7 @@
 
 - (NSString *) iconName
 {
-    return @"zoom.png";
+    return self.customIconName ? : @"zoom.png";
 }
 
 - (void) moveWithEvent:(WDEvent *)event inCanvas:(WDCanvas *)canvas

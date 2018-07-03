@@ -16,7 +16,7 @@
 
 - (NSString *) iconName
 {
-    return @"rotate.png";
+    return self.customIconName ? : @"rotate.png";
 }
 
 - (CGAffineTransform) computeTransform:(CGPoint)pt pivot:(CGPoint)pivot constrain:(WDToolFlags)flags

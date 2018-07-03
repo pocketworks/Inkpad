@@ -18,7 +18,7 @@
 
 - (NSString *) iconName
 {
-    return @"scissor.png";
+    return self.customIconName ? : @"scissor.png";
 }
 
 - (void) beginWithEvent:(WDEvent *)theEvent inCanvas:(WDCanvas *)canvas

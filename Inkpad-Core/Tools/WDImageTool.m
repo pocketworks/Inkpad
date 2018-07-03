@@ -10,8 +10,9 @@
 @implementation WDImageTool
 UIViewController *imageController;
 -(NSString *) iconName {
-    return @"album.png";
+    return self.customIconName ? :@"album.png";
 }
+
 
 -(void) activated {
     if (self.delegate != nil) {

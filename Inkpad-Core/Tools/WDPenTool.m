@@ -25,8 +25,9 @@
 @synthesize replacementNode = replacementNode_;
 
 - (NSString *) iconName {
-    return @"pen.png";
+    return self.customIconName ? : @"pen.png";
 }
+
 
 - (BOOL) createsObject {
     return YES;

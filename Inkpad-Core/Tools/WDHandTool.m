@@ -21,8 +21,9 @@
 
 - (NSString *) iconName
 {
-    return @"hand.png";
+    return self.customIconName ? : @"hand.png";
 }
+
 
 #if !TARGET_OS_IPHONE
 

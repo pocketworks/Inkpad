@@ -10,7 +10,7 @@
 @implementation WDMapsTool
 UIViewController  *mapsController;
 -(NSString *) iconName {
-    return @"pivot";
+    return self.customIconName ? : @"pivot";
 }
 
 -(void) activated {

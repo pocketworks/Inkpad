@@ -30,8 +30,10 @@ NSString *WDDefaultFreehandTool = @"WDDefaultFreehandTool";
 
 - (NSString *) iconName
 {
-    return closeShape_ ? @"freehand_shape.png" : @"brush.png";
+    NSString* name =  closeShape_ ? @"freehand_shape.png" : @"brush.png";
+    return self.customIconName ? : name;
 }
+
 
 - (BOOL) createsObject
 {
