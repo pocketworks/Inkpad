@@ -45,10 +45,12 @@ NSString *WDPaletteMovedNotification = @"WDPaletteMovedNotification";
     CALayer *layer = self.layer;
     
     layer.shadowPath = shadowPath.CGPath;
-    layer.shadowOpacity = 0.4f;
+    layer.shadowOpacity = 1.4f;
     layer.shadowRadius = 2;
     layer.shadowOffset = CGSizeZero;
     layer.cornerRadius = kShadowCornerRadius;
+    layer.borderColor = [UIColor groupTableViewBackgroundColor].CGColor;
+    layer.borderWidth = 1.f;
     
     self.userInteractionEnabled = YES;
     self.exclusiveTouch = YES;
@@ -56,7 +58,9 @@ NSString *WDPaletteMovedNotification = @"WDPaletteMovedNotification";
     
     self.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin |
         UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleBottomMargin;
+    [self roundCornersOnView:self onTopLeft:YES topRight:YES bottomLeft:NO bottomRight:NO radius:10];
     
+//    self.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.7, 0.7);
     return self;
 }
 
@@ -152,4 +156,24 @@ NSString *WDPaletteMovedNotification = @"WDPaletteMovedNotification";
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
 }
 
+
+- (UIView *)roundCornersOnView:(UIView *)view onTopLeft:(BOOL)tl topRight:(BOOL)tr bottomLeft:(BOOL)bl bottomRight:(BOOL)br radius:(float)radius {
+    
+    if (tl || tr || bl || br) {
+        UIRectCorner corner = 0;
+        if (tl) {corner = corner | UIRectCornerTopLeft;}
+        if (tr) {corner = corner | UIRectCornerTopRight;}
+        if (bl) {corner = corner | UIRectCornerBottomLeft;}
+        if (br) {corner = corner | UIRectCornerBottomRight;}
+        
+        UIView *roundedView = view;
+        UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:roundedView.bounds byRoundingCorners:corner cornerRadii:CGSizeMake(radius, radius)];
+        CAShapeLayer *maskLayer = [CAShapeLayer layer];
+        maskLayer.frame = roundedView.bounds;
+        maskLayer.path = maskPath.CGPath;
+        roundedView.layer.mask = maskLayer;
+        return roundedView;
+    }
+    return view;
+}
 @end

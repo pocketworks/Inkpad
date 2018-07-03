@@ -326,7 +326,7 @@ NSString *WDCanvasBeganTrackingTouches = @"WDCanvasBeganTrackingTouches";
     }
     
     [self setTrueViewScale_:scale];
-    
+//     [self setTrueViewScale_:0.6];
     userSpacePivot_ = CGPointMake(drawing_.dimensions.width / 2, drawing_.dimensions.height / 2);
     deviceSpacePivot_ = WDCenterOfRect(self.bounds);
     
@@ -853,35 +853,44 @@ NSString *WDCanvasBeganTrackingTouches = @"WDCanvasBeganTrackingTouches";
         toolPalette_.hidden = NO;
         return;
     }
-    
-    WDToolView *tools = [[WDToolView alloc] initWithTools:[WDToolManager sharedInstance].tools];
-    tools.canvas = self;
-    
-    CGRect frame = tools.frame;
-    frame.size.height += [WDToolButton dimension] + 4;
-    float bottom = CGRectGetHeight(tools.frame);
-    
-    // create a base view for all the palette elements
-    UIView *paletteView = [[UIView alloc] initWithFrame:frame];
-    [paletteView addSubview:tools];
-    
-    // add a separator
-    WDEtchedLine *line = [[WDEtchedLine alloc] initWithFrame:CGRectMake(2, bottom + 1, CGRectGetWidth(frame) - 4, 2)];
-    [paletteView addSubview:line];
-    
-    // add a "delete" buttton
-    deleteButton_ = [UIButton buttonWithType:UIButtonTypeCustom];
-    UIImage *icon = [[UIImage imageNamed:@"trash.png" inBundle:[NSBundle bundleForClass:self.class] compatibleWithTraitCollection:nil] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-    deleteButton_.frame = CGRectMake(0, bottom + 3, [WDToolButton dimension], [WDToolButton dimension]);
-    [deleteButton_ setImage:icon forState:UIControlStateNormal];
-    deleteButton_.tintColor = [UIColor colorWithRed:(166.0f / 255.0f) green:(51.0f / 255.0f) blue:(51.0 / 255.0f) alpha:1.0f];
-    [deleteButton_ addTarget:[self.controller getDrawingController] action:@selector(delete:) forControlEvents:UIControlEventTouchUpInside];
-    deleteButton_.enabled = NO;
-    [paletteView addSubview:deleteButton_];
-    
+    UIView *paletteView;
+    UIViewController *customToolView  =[self.controller customToolView];
+    if (customToolView) {
+        UIViewController *canvasVC = ((UIViewController *)self.controller);
+        [canvasVC addChildViewController:customToolView];
+        paletteView = [[UIView alloc] initWithFrame:customToolView.view.frame];
+        [paletteView addSubview:customToolView.view];
+        
+    }else{
+        WDToolView *tools = [[WDToolView alloc] initWithTools:[WDToolManager sharedInstance].tools];
+        tools.canvas = self;
+        
+        CGRect frame = tools.frame;
+        frame.size.height += [WDToolButton dimension] + 4;
+        float bottom = CGRectGetHeight(tools.frame);
+        
+        // create a base view for all the palette elements
+        paletteView = [[UIView alloc] initWithFrame:frame];
+        [paletteView addSubview:tools];
+        
+        // add a separator
+        WDEtchedLine *line = [[WDEtchedLine alloc] initWithFrame:CGRectMake(2, bottom + 1, CGRectGetWidth(frame) - 4, 2)];
+        [paletteView addSubview:line];
+        
+        // add a "delete" buttton
+        deleteButton_ = [UIButton buttonWithType:UIButtonTypeCustom];
+        UIImage *icon = [[UIImage imageNamed:@"trash.png" inBundle:[NSBundle bundleForClass:self.class] compatibleWithTraitCollection:nil] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        deleteButton_.frame = CGRectMake(0, bottom + 3, [WDToolButton dimension], [WDToolButton dimension]);
+        [deleteButton_ setImage:icon forState:UIControlStateNormal];
+        deleteButton_.tintColor = [UIColor colorWithRed:(166.0f / 255.0f) green:(51.0f / 255.0f) blue:(51.0 / 255.0f) alpha:1.0f];
+        [deleteButton_ addTarget:[self.controller getDrawingController] action:@selector(delete:) forControlEvents:UIControlEventTouchUpInside];
+        deleteButton_.enabled = NO;
+        [paletteView addSubview:deleteButton_];
+        
+    }
+   
     toolPalette_ = [WDPalette paletteWithBaseView:paletteView defaultsName:@"tools palette"];
     [self addSubview:toolPalette_];
-    
     [self ensureToolPaletteIsOnScreen];
 }
 

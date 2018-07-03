@@ -26,4 +26,5 @@
 - (UIViewController*) buildSettingsViewForFill;
 - (UIViewController*) buildMapView;
 - (UIViewController*) buildImageView;
+- (UIViewController*) customToolView;
 @end
