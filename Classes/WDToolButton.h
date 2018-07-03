@@ -21,6 +21,7 @@
 
 @property (nonatomic, weak) WDTool  *tool;
 @property (nonatomic, weak) NSArray  *tools;
+@property (nonatomic, weak) BOOL  customTool;
 
 + (float) dimension;
 

@@ -150,14 +150,16 @@
 - (void) setTool:(WDTool *)tool
 {
     tool_ = tool;
-    
-    UIImage *tinted = [tool.icon imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
-    [self setImage:tinted forState:UIControlStateNormal];
-    self.tintColor = [self toolTintColor];
-    [self setImage:tool.icon forState:UIControlStateSelected];
     tool.parent = self;
-    if (!tools_) {
-        [self setBackgroundImage:[self selectedBackgroundWithDisclosure:NO] forState:UIControlStateSelected];
+    if (!self.customTool) {
+        UIImage *tinted = [tool.icon imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+        [self setImage:tinted forState:UIControlStateNormal];
+        self.tintColor = [self toolTintColor];
+        [self setImage:tool.icon forState:UIControlStateSelected];
+        
+        if (!tools_) {
+            [self setBackgroundImage:[self selectedBackgroundWithDisclosure:NO] forState:UIControlStateSelected];
+        }
     }
 }
 

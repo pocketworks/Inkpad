@@ -45,7 +45,7 @@
 
 - (id) icon
 {
-    return [UIImage imageNamed:self.iconName inBundle:[NSBundle bundleForClass:self.class] compatibleWithTraitCollection:nil];
+    return [UIImage imageNamed:self.iconName] ? : [UIImage imageNamed:self.iconName inBundle:[NSBundle bundleForClass:self.class] compatibleWithTraitCollection:nil];
 }
 
 - (BOOL) createsObject
