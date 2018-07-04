@@ -318,11 +318,17 @@ NSString *WDCanvasBeganTrackingTouches = @"WDCanvasBeganTrackingTouches";
     float   documentAspect = drawing_.dimensions.width / drawing_.dimensions.height;
     float   boundsAspect = CGRectGetWidth(self.bounds) / CGRectGetHeight(self.bounds);
     float   scale;
+//
+//    if (documentAspect > boundsAspect) {
+//        scale = (CGRectGetWidth(self.bounds) - (kFitBuffer * 2)) / drawing_.dimensions.width;
+//    } else {
+//        scale = (CGRectGetHeight(self.bounds) - (kFitBuffer * 2)) / drawing_.dimensions.height;
+//    }
     
-    if (documentAspect > boundsAspect) {
-        scale = (CGRectGetWidth(self.bounds) - (kFitBuffer * 2)) / drawing_.dimensions.width;
-    } else {
-        scale = (CGRectGetHeight(self.bounds) - (kFitBuffer * 2)) / drawing_.dimensions.height;
+    if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ){
+        scale = 1;
+    }else {
+         scale = 0.55;
     }
     
     [self setTrueViewScale_:scale];

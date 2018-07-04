@@ -39,14 +39,14 @@ NSString *WDPaletteMovedNotification = @"WDPaletteMovedNotification";
     [self addParallaxEffect];
     
     self.opaque = NO;
-    self.backgroundColor = [UIColor colorWithWhite:1.0f alpha:0.9f];
+    self.backgroundColor = [UIColor colorWithWhite:1.0f alpha:1];
     
     UIBezierPath *shadowPath = [UIBezierPath bezierPathWithRoundedRect:self.bounds cornerRadius:kShadowCornerRadius];
     CALayer *layer = self.layer;
     
     layer.shadowPath = shadowPath.CGPath;
-    layer.shadowOpacity = 1.4f;
-    layer.shadowRadius = 2;
+    layer.shadowOpacity = 1;
+    layer.shadowRadius = 5;
     layer.shadowOffset = CGSizeZero;
     layer.cornerRadius = kShadowCornerRadius;
     layer.borderColor = [UIColor groupTableViewBackgroundColor].CGColor;

@@ -89,10 +89,15 @@ static NSString *orientations_[] = { @"Portrait", @"Landscape" };
 //        size.width = temp;
 //    }
 //    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    CGRect screenRect = [[UIScreen mainScreen] bounds];
-    size.width = screenRect.size.width - 100;
-    size.height = screenRect.size.height;
-
+//    CGRect screenRect = [[UIScreen mainScreen] bounds];
+//    size.width = screenRect.size.width - 50;
+//     if ( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad ){
+//          size = CGSizeMake(792,612);
+//     }else {
+//          size = CGSizeMake(500,300);
+//     }
+    
+    size = CGSizeMake(792,612);
     return size;
 }
 
