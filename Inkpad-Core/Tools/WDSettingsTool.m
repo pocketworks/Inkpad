@@ -20,13 +20,13 @@ UIViewController  *strokeController;
 }
 
 -(void) activated {
-    if (self.delegate != nil) {
-        if (!strokeController) {
-            strokeController = [self.delegate buildSettingsViewForStroke];
-        }
-        strokeController.modalPresentationStyle = UIModalPresentationPopover;
-        [self.delegate runPopoverWithController:strokeController from:self.parent];
-    }
+//    if (self.delegate != nil) {
+//        if (!strokeController) {
+//            strokeController = [self.delegate buildSettingsViewForStroke];
+//        }
+//        strokeController.modalPresentationStyle = UIModalPresentationPopover;
+//        [self.delegate runPopoverWithController:strokeController from:self.parent];
+//    }
     
 }
 

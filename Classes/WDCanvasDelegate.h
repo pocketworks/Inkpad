@@ -21,6 +21,7 @@
 - (void) editTextObject:(WDText *)text selectAll:(BOOL)selectAll;
 - (WDDrawingController*) getDrawingController;
 - (FPPopoverController*) getPopoverController;
+- (WDCanvas*) getCanvas;
 - (void) runPopoverWithController:(UIViewController *)controller from:(id)sender;
 - (UIViewController*) buildSettingsViewForStroke;
 - (UIViewController*) buildSettingsViewForFill;
