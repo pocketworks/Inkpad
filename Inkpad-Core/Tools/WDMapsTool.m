@@ -13,14 +13,14 @@ UIViewController  *mapsController;
     return self.customIconName ? : @"pivot";
 }
 
--(void) activated {
-    if (self.delegate != nil) {
-        if (!mapsController) {
-            mapsController = [self.delegate buildMapView];
-        }
-        mapsController.modalPresentationStyle = UIModalPresentationPopover;
-        [self.delegate runPopoverWithController:mapsController from:self.parent];
-    }
-    
-}
+//-(void) activated {
+//    if (self.delegate != nil) {
+//        if (!mapsController) {
+//            mapsController = [self.delegate buildMapView];
+//        }
+//        mapsController.modalPresentationStyle = UIModalPresentationPopover;
+//        [self.delegate runPopoverWithController:mapsController from:self.parent];
+//    }
+//    
+//}
 @end

@@ -15,13 +15,13 @@ UIViewController *imageController;
 
 
 -(void) activated {
-    if (self.delegate != nil) {
-        if (!imageController) {
-            imageController = [self.delegate buildImageView];
-        }
-        imageController.modalPresentationStyle = UIModalPresentationPopover;
-        [self.delegate runPopoverWithController:imageController from:self.parent];
-    }
+//    if (self.delegate != nil) {
+//        if (!imageController) {
+//            imageController = [self.delegate buildImageView];
+//        }
+//        imageController.modalPresentationStyle = UIModalPresentationPopover;
+//        [self.delegate runPopoverWithController:imageController from:self.parent];
+//    }
     
 
 }
