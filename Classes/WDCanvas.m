@@ -742,6 +742,9 @@ NSString *WDCanvasBeganTrackingTouches = @"WDCanvasBeganTrackingTouches";
     BOOL resetPivots = NO;
     
     if (!moved_ && [eventTouches count] == 2) {
+        if (self.disablePinchZoom){
+            return;
+        }
         controlGesture_ = YES;
         resetPivots = YES;
         

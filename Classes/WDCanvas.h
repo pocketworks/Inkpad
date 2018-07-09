@@ -92,6 +92,7 @@
 @property (nonatomic, readonly) float thinWidth;
 @property (nonatomic, strong) IBOutlet UIView *activityView;
 @property (nonatomic, strong) NSArray *dynamicGuides;
+@property (nonatomic, assign) BOOL disablePinchZoom;
 
 - (CGRect) convertRectToView:(CGRect)rect;
 - (CGPoint) convertPointToDocumentSpace:(CGPoint)pt;
