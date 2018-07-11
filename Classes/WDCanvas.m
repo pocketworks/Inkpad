@@ -735,8 +735,6 @@ NSString *WDCanvasBeganTrackingTouches = @"WDCanvasBeganTrackingTouches";
 {
     NSSet *eventTouches = [event allTouches];
     
-    [controller_ hidePopovers];
-    
     [[NSNotificationCenter defaultCenter] postNotificationName:WDCanvasBeganTrackingTouches object:self];
     
     BOOL resetPivots = NO;

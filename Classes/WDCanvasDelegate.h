@@ -17,14 +17,7 @@
 @required
 
 - (void) updateTitle;
-- (void) hidePopovers;
 - (void) editTextObject:(WDText *)text selectAll:(BOOL)selectAll;
 - (WDDrawingController*) getDrawingController;
-- (FPPopoverController*) getPopoverController;
-- (void) runPopoverWithController:(UIViewController *)controller from:(id)sender;
-- (UIViewController*) buildSettingsViewForStroke;
-- (UIViewController*) buildSettingsViewForFill;
-- (UIViewController*) buildMapView;
-- (UIViewController*) buildImageView;
 - (UIViewController*) customToolView;
 @end
