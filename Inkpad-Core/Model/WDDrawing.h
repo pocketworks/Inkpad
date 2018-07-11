@@ -94,7 +94,7 @@ BOOL WDRenderingMetaDataOutlineOnly(WDRenderingMetaData metaData);
 - (void) moveLayerAtIndex:(NSUInteger)src toIndex:(NSUInteger)dest;
 - (void) duplicateActiveLayer;
 - (NSString *) uniqueLayerName;
-
+- (void) removeLayer:(WDLayer *)layer;
 - (NSArray *) allElements;
 - (void) addObject:(id)obj;
 

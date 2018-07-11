@@ -45,6 +45,7 @@
 - (void) deselectNode:(WDBezierNode *)node;
 - (void) deselectAllNodes;
 - (BOOL) isNodeSelected:(WDBezierNode *)node;
+- (void) deselectNonActiveLayerContents;
 
 // querying selection state
 - (WDElement *) singleSelection;
