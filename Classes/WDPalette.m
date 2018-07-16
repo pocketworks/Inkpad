@@ -130,7 +130,7 @@ NSString *WDPaletteMovedNotification = @"WDPaletteMovedNotification";
 + (WDPalette *) paletteWithBaseView:(UIView *)view defaultsName:(NSString *)name
 {
     NSString *originString = [[NSUserDefaults standardUserDefaults] objectForKey:name];
-    CGPoint origin = CGPointMake(20,20);
+    CGPoint origin = CGPointMake(20,100);
     
     if (originString) {
         origin = CGPointFromString(originString);
