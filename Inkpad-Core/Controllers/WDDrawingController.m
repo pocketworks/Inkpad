@@ -186,7 +186,7 @@ NSString *WDSelectionChangedNotification = @"WDSelectionChangedNotification";
     [selectedObjects_ setSet:restoreState[@"selection"]];
     [self setSelectedNodesFromSet:restoreState[@"node selection"]];
     self.activePath = restoreState[@"active path"];
-    [self notifySelectionChanged];
+    [self notifySelectionChanged:@{@"type":@"undo"}];
     [drawing_ activateLayerAtIndex:[drawing_.layers indexOfObject:restoreState[@"active layer"]]];
     
     [redoSelectionStack_ addObject:[undoSelectionStack_ lastObject]];
@@ -200,7 +200,7 @@ NSString *WDSelectionChangedNotification = @"WDSelectionChangedNotification";
     [selectedObjects_ setSet:restoreState[@"selection"]];
     [self setSelectedNodesFromSet:restoreState[@"node selection"]];
     self.activePath = restoreState[@"active path"];
-    [self notifySelectionChanged];
+    [self notifySelectionChanged:@{@"type":@"redo"}];
     [drawing_ activateLayerAtIndex:[drawing_.layers indexOfObject:restoreState[@"active layer"]]];
     
     [undoSelectionStack_ addObject:[redoSelectionStack_ lastObject]];
@@ -217,7 +217,7 @@ NSString *WDSelectionChangedNotification = @"WDSelectionChangedNotification";
     
     WDLayer *layer = (WDLayer *) [aNotification userInfo][@"layer"];
     [selectedObjects_ minusSet:[NSSet setWithArray:layer.elements]];
-    [self notifySelectionChanged];
+    [self notifySelectionChanged:@{@"type":@"layer_deleted"}];
 }
 
 - (void) layerLockedStatusChanged:(NSNotification *)aNotification
@@ -229,7 +229,7 @@ NSString *WDSelectionChangedNotification = @"WDSelectionChangedNotification";
     
     if (layer.locked) {
         [selectedObjects_ minusSet:[NSSet setWithArray:layer.elements]];
-        [self notifySelectionChanged];
+        [self notifySelectionChanged:@{@"type":@"layer_lock"}];
     }
 }
 
@@ -242,7 +242,7 @@ NSString *WDSelectionChangedNotification = @"WDSelectionChangedNotification";
     
     if (layer.hidden) {
         [selectedObjects_ minusSet:[NSSet setWithArray:layer.elements]];
-        [self notifySelectionChanged];
+        [self notifySelectionChanged:@{@"type":@"layer_visibility"}];
     }
 }
 
@@ -269,7 +269,7 @@ NSString *WDSelectionChangedNotification = @"WDSelectionChangedNotification";
     node.selected = YES;
     [selectedNodes_ addObject:node];
     
-    [self notifySelectionChanged];
+    [self notifySelectionChanged:@{@"type":@"select"}];
 }
 
 - (void) deselectNode:(WDBezierNode *)node
@@ -281,7 +281,7 @@ NSString *WDSelectionChangedNotification = @"WDSelectionChangedNotification";
     node.selected = NO;
     [selectedNodes_ removeObject:node];
     
-    [self notifySelectionChanged];
+    [self notifySelectionChanged:@{@"type":@"deselect"}];
 }
 
 - (void) deselectAllNodes
@@ -291,7 +291,7 @@ NSString *WDSelectionChangedNotification = @"WDSelectionChangedNotification";
     }
     [selectedNodes_ removeAllObjects];
     
-    [self notifySelectionChanged];
+    [self notifySelectionChanged:@{@"type":@"deselect_all"}];
 }
 
 - (BOOL) isNodeSelected:(WDBezierNode *)node
@@ -453,13 +453,13 @@ NSString *WDSelectionChangedNotification = @"WDSelectionChangedNotification";
 
 - (void) delayedSelectionNotification:(id)obj
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:WDSelectionChangedNotification object:self userInfo:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:WDSelectionChangedNotification object:self userInfo:obj];
 }
 
-- (void) notifySelectionChanged
+- (void) notifySelectionChanged:(id)obj
 {
     [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(delayedSelectionNotification:) object:nil];
-    [self performSelector:@selector(delayedSelectionNotification:) withObject:nil afterDelay:0];
+    [self performSelector:@selector(delayedSelectionNotification:) withObject:obj afterDelay:0];
 }
 
 - (void) selectObject:(WDElement *)element
@@ -482,7 +482,7 @@ NSString *WDSelectionChangedNotification = @"WDSelectionChangedNotification";
     [selectedObjects_ addObject:element];
     [self deselectAllNodes];
     
-    [self notifySelectionChanged];
+    [self notifySelectionChanged:@{@"type":@"select"}];
 }
 
 - (void) selectObjects:(NSArray *)elements
@@ -494,7 +494,7 @@ NSString *WDSelectionChangedNotification = @"WDSelectionChangedNotification";
 - (void) deselectObject:(WDElement *)element
 {
     [selectedObjects_ removeObject:element];
-    [self notifySelectionChanged];
+    [self notifySelectionChanged:@{@"type":@"deselect"}];
 }
 
 - (void) deselectObjectAndSubelements:(WDElement *)element
@@ -541,7 +541,7 @@ NSString *WDSelectionChangedNotification = @"WDSelectionChangedNotification";
         //}
     }
     
-    [self notifySelectionChanged];
+    [self notifySelectionChanged:@{@"type":@"select"}];
 }
 
 - (void) deselectNonActiveLayerContents
@@ -549,7 +549,7 @@ NSString *WDSelectionChangedNotification = @"WDSelectionChangedNotification";
     for (WDLayer *layer in drawing_.layers) {
         if (layer != drawing_.activeLayer) {
             [selectedObjects_ minusSet:[NSSet setWithArray:layer.elements]];
-            [self notifySelectionChanged];
+            [self notifySelectionChanged:@{@"type":@"deselect_non_active"}];
         }
     }
 }
@@ -565,7 +565,7 @@ NSString *WDSelectionChangedNotification = @"WDSelectionChangedNotification";
     [selectedObjects_ removeAllObjects];
     [self deselectAllNodes];
     
-    [self notifySelectionChanged];
+    [self notifySelectionChanged:@{@"type":@"select_none"}];
 }
 
 - (void) selectAll:(id)sender
@@ -585,7 +585,7 @@ NSString *WDSelectionChangedNotification = @"WDSelectionChangedNotification";
         }
     }
     
-    [self notifySelectionChanged];
+    [self notifySelectionChanged:@{@"type":@"select"}];
 }
 
 - (void) selectAllOnActiveLayer:(id)sender
@@ -603,7 +603,7 @@ NSString *WDSelectionChangedNotification = @"WDSelectionChangedNotification";
     
     [selectedObjects_ addObjectsFromArray:activeLayer.elements];
     
-    [self notifySelectionChanged];
+    [self notifySelectionChanged:@{@"type":@"select"}];
 }
 
 - (void) delete:(id)sender
@@ -651,7 +651,7 @@ NSString *WDSelectionChangedNotification = @"WDSelectionChangedNotification";
     
     [selectedObjects_ removeAllObjects];
     
-    [self notifySelectionChanged];
+    [self notifySelectionChanged:@{@"type":@"delete"}];
 }
 
 #pragma mark -
@@ -894,7 +894,7 @@ NSString *WDSelectionChangedNotification = @"WDSelectionChangedNotification";
     } else {
         if (path) {
             [selectedObjects_ addObject:path];
-            [self notifySelectionChanged];
+            [self notifySelectionChanged:@{@"type":@"select"}];
         } else if (activePath_) {
             [self deselectAllNodes];
         }

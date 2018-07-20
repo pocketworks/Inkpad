@@ -63,7 +63,7 @@
 - (BOOL) allSelectedObjectsAreRootObjects;
 
 // selection
-- (void) notifySelectionChanged;
+- (void) notifySelectionChanged:(id)obj;
 
 // actions
 - (void) selectObject:(WDElement *)element;
